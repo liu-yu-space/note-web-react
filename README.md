@@ -19,3 +19,11 @@ pnpm i
 ```shell
 pnpm dev
 ```
+
+## 技术栈：
+
+### vite+react+ts+tailwindcss+redux
+
+## 其他
+
+### 关于提交:使用 husky
