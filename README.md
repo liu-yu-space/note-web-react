@@ -26,4 +26,6 @@ pnpm dev
 
 ## 其他
 
-### 关于提交:使用Husky、Commitlint 和 Lint-Staged来规范提交文件和提交信息：规范[https://www.conventionalcommits.org/]
+### 关于提交:使用Husky、Commitlint 和 Lint-Staged来规范提交文件和提交信息：[conventionalcommits](https://www.conventionalcommits.org/)
+
+### 关于icon 引入了[Lucide](src/pages/login/login.tsx)

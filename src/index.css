@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
-@layer components {
-  /* --color-main: color-; */
+@layer base {
+  :root {
+    --color-main: #40a070;
+    --color-main-font: #141e1b;
+    --color-main-bg: #ffffff;
 
-  .btn {
-    color: rgba(0, 0, 0, 0.87);
-    background-color: #fff;
+    color: var(--color-main-font);
+    font-family: sans-serif;
   }
 }
