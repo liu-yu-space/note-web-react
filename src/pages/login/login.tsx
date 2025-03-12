@@ -1,36 +1,48 @@
 import { useNavigate } from "react-router-dom";
 import { Lock, User } from "lucide-react";
+import LoginPerson from "@/assets/login-person.jpg";
+import { WButton } from "../../components/index.tsx";
 
 export default function Home() {
     const navigate = useNavigate();
-    const linlB = () => {
+    const handleClick = () => {
         // 直接跟我们定义的path
         void navigate("/");
     };
     return (
-        <section className="h-dvh flex justify-center items-center bg-[url(@/assets/login-bg1.png)] bg-cover bg-center">
-            <div className="bg-white/80 p-8 rounded-lg shadow-lg h-100 w-180">
-                <img src="" alt="" />
-                <h1 className="text-2xl display-flex justify-center align-middle">
-                    学而时习之,不亦说乎！
-                </h1>
-                <p className="text-sm flex flex-col items-center mt-15">
-                    <label htmlFor="" className="block mt-4 border-b border-gray-300 w-90">
-                        <User className="w-6 h-6 text-(--color-main)" />
-                        <input type="text" />
-                    </label>
-                    <label htmlFor="" className="block mt-4 border-b border-gray-300 w-90">
-                        <Lock className="w-6 h-6 text-(--color-main)" />
-                        <input type="password" />
-                    </label>
-                    <button
-                        type="button"
-                        className="border rounded-[4px] px-4 py-1 text-sm mt-10"
-                        onClick={linlB}
-                    >
-                        登 录
-                    </button>
-                </p>
+        <section className="h-dvh flex justify-center items-center bg-[url(@/assets/login-bg.webp)] bg-cover bg-center">
+            <div className="bg-white p-8 rounded-lg shadow-xl h-100 w-180 flex">
+                <img src={LoginPerson} alt="" className="w-60 shrink-[0] mx-9" />
+                <div className="flex flex-col justify-center items-center w-100">
+                    <h1 className="text-xl display-flex justify-center align-middle">
+                        学而时习之,不亦说乎！
+                    </h1>
+                    <p className="text-sm flex flex-col items-center mt-5">
+                        <label
+                            htmlFor=""
+                            className="mt-4 border border-gray-300 w-60 flex items-center px-2 py-1.5 rounded-[4px]"
+                        >
+                            <User className="w-5 h-5 text-(--color-main) mr-1" />
+                            <input
+                                type="text"
+                                placeholder="用户名"
+                                className="grow p-1 outline-none"
+                            />
+                        </label>
+                        <label
+                            htmlFor=""
+                            className="flex items-center mt-4 border border-gray-300 w-60 px-2 py-1.5 rounded-[4px]"
+                        >
+                            <Lock className="w-5 h-5 text-(--color-main) mr-1" />
+                            <input
+                                type="password"
+                                placeholder="密码"
+                                className="grow p-1 outline-none"
+                            />
+                        </label>
+                        <WButton text="登录" handleClick={handleClick}></WButton>
+                    </p>
+                </div>
             </div>
         </section>
     );
