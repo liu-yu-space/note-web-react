@@ -42,7 +42,7 @@ export default function Home() {
                                 onChange={(e) => setName(e.target.value)}
                             />
                         </label>
-                        <label className="flex items-center mt-4 border border-gray-300 w-60 px-2 py-1.5 rounded-[4px]">
+                        <label className="flex items-center mt-4 mb-10 border border-gray-300 w-60 px-2 py-1.5 rounded-[4px]">
                             <Lock className="w-5 h-5 text-(--color-main) mr-1" />
                             <input
                                 type="password"
