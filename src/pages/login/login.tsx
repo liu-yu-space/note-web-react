@@ -1,13 +1,27 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Lock, User } from "lucide-react";
 import LoginPerson from "@/assets/login-person.jpg";
 import { WButton } from "../../components/index.tsx";
+import http from "@/network/http.ts";
 
 export default function Home() {
     const navigate = useNavigate();
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+
     const handleClick = () => {
-        // 直接跟我们定义的path
-        void navigate("/");
+         
+        void http("/auth/login", {
+            method: "POST",
+            body: JSON.stringify({
+                name,
+                password,
+            }),
+             
+        }).then(() => {
+            void navigate("/");
+        });
     };
     return (
         <section className="h-dvh flex justify-center items-center bg-[url(@/assets/login-bg.webp)] bg-cover bg-center">
@@ -18,26 +32,24 @@ export default function Home() {
                         学而时习之,不亦说乎！
                     </h1>
                     <p className="text-sm flex flex-col items-center mt-5">
-                        <label
-                            htmlFor=""
-                            className="mt-4 border border-gray-300 w-60 flex items-center px-2 py-1.5 rounded-[4px]"
-                        >
+                        <label className="mt-4 border border-gray-300 w-60 flex items-center px-2 py-1.5 rounded-[4px]">
                             <User className="w-5 h-5 text-(--color-main) mr-1" />
                             <input
                                 type="text"
                                 placeholder="用户名"
                                 className="grow p-1 outline-none"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
                             />
                         </label>
-                        <label
-                            htmlFor=""
-                            className="flex items-center mt-4 border border-gray-300 w-60 px-2 py-1.5 rounded-[4px]"
-                        >
+                        <label className="flex items-center mt-4 border border-gray-300 w-60 px-2 py-1.5 rounded-[4px]">
                             <Lock className="w-5 h-5 text-(--color-main) mr-1" />
                             <input
                                 type="password"
                                 placeholder="密码"
                                 className="grow p-1 outline-none"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </label>
                         <WButton text="登录" handleClick={handleClick}></WButton>

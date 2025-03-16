@@ -10,4 +10,13 @@ export default defineConfig({
             "@": path.resolve(__dirname, "src"),
         },
     },
+    server: {
+        proxy: {
+            // 代理跨域请求
+            "/auth": {
+                target: "http://localhost:3000", // 目标服务器
+                changeOrigin: true, // 是否更改请求源
+            },
+        },
+    },
 });
