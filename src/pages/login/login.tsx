@@ -11,15 +11,12 @@ export default function Home() {
     const [password, setPassword] = useState("");
 
     const handleClick = () => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         void http("/auth/login", {
             method: "POST",
             body: JSON.stringify({
                 name,
                 password,
             }),
-
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         }).then(() => {
             void navigate("/");
         });
