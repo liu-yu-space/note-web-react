@@ -4,12 +4,12 @@ import Home from "./pages/home/home.tsx";
 import Note from "./pages/note/note.tsx";
 import Demo from "./pages/demo/index.tsx";
 import Aboutme from "./pages/aboutme/index.tsx";
-import Navbar from "./pages/layout/nav.tsx";
+// import Navbar from "./pages/layout/nav.tsx";
 
 function App() {
     return (
         <main className="w-dvw h-dvh">
-            <Navbar />
+            {/* <Navbar /> */}
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
