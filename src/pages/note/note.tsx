@@ -1,4 +1,12 @@
+import markdownit from 'markdown-it';
+
 export default function note() {
+
+    const md = markdownit();
+    const result = md.render('# markdown-it rulezz!');
+
+    console.log(result);
+
     return <main>
         <div>
             <pre className="font-lxgw">

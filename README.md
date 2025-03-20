@@ -26,8 +26,10 @@ pnpm dev
 
 ## 其他
 
-### 关于提交:使用Husky、Commitlint和Lint-Staged来规范提交文件和提交信息：[conventionalcommits](https://www.conventionalcommits.org/)
+### 提交规范：[conventionalcommits](https://www.conventionalcommits.org/)
 
-### 关于icon 引入了[Lucide](https://lucide.dev/icons/)
+### Icon库：[Lucide](https://lucide.dev/icons/)
 
 ### 字体：[LXGW WenKai / 霞鹜文楷](https://github.com/lxgw/LxgwWenKai)
+
+### md编辑器：[markdown-it](https://markdown-it.github.io/markdown-it/)
