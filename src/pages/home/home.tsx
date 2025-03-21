@@ -1,4 +1,4 @@
-import BookGril from "@/assets/book-gril1.png";
+import BookGril from "@/assets/imgs/book-gril1.png";
 
 export default function Home() {
     return (

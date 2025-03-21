@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import logo from "@/assets/open-book.svg";
+import logo from "@/assets/imgs/open-book.svg";
 import WButton from "@/components/wbutton";
 import { Link } from "react-router-dom";
 

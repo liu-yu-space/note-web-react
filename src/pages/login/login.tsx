@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Lock, User } from "lucide-react";
-import LoginPerson from "@/assets/login-person.jpg";
+import LoginPerson from "@/assets/imgs/login-person.jpg";
 import { WButton } from "../../components/index.tsx";
 import http from "@/network/http.ts";
 
