@@ -1,6 +1,7 @@
 /* markdown styles */
+
 /* code block */
-.hljs {
+.md-container .hljs {
   display: block;
   overflow-x: auto;
   padding: 0.5em;
@@ -9,7 +10,7 @@
 }
 
 /* inline code */
-code {
+.md-container code {
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
@@ -18,7 +19,7 @@ code {
 }
 
 /* table */
-table {
+.md-container table {
   display: block;
   width: 100%;
   overflow: auto;
@@ -26,28 +27,28 @@ table {
   margin-bottom: 16px;
 }
 
-table th {
+.md-container table th {
   font-weight: 600;
   text-align: left;
 }
 
-table td,
-table th {
+.md-container table td,
+.md-container table th {
   padding: 6px 13px;
   border: 1px solid #dfe2e5;
 }
 
-table tr {
+.md-container table tr {
   background-color: #fff;
   border-top: 1px solid #c6cbd1;
 }
 
-table tr:nth-child(2n) {
+.md-container table tr:nth-child(2n) {
   background-color: #f6f8fa;
 }
 
 /* blockquote */
-blockquote {
+.md-container blockquote {
   margin: 0 0 16px;
   padding: 0 16px;
   color: #777;
@@ -55,12 +56,12 @@ blockquote {
 }
 
 /* heading */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.md-container h1,
+.md-container h2,
+.md-container h3,
+.md-container h4,
+.md-container h5,
+.md-container h6 {
   margin-top: 24px;
   margin-bottom: 16px;
   line-height: 1.25;
@@ -69,33 +70,33 @@ h6 {
 }
 
 /* link */
-a {
+.md-container a {
   color: #0366d6;
   text-decoration: none;
 }
 
-a:hover {
+.md-container a:hover {
   text-decoration: underline;
 }
 
 /* list */
-ul,
-ol {
+.md-container ul,
+.md-container ol {
   padding-left: 2em;
 }
 
-li {
+.md-container li {
   margin-bottom: 0.5em;
 }
 
 /* image */
-img {
+.md-container img {
   max-width: 100%;
   box-sizing: border-box;
 }
 
 /* code block */
-pre {
+.md-container pre {
   margin-bottom: 16px;
   overflow: auto;
   background-color: #f6f8fa;
@@ -103,7 +104,7 @@ pre {
   padding: 16px;
 }
 
-pre code {
+.md-container pre code {
   display: block;
   padding: 0.5em;
   background-color: #f6f8fa;
@@ -111,7 +112,7 @@ pre code {
 }
 
 /* inline code */
-:not(pre) > code {
+.md-container :not(pre) > code {
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
@@ -120,47 +121,10 @@ pre code {
 }
 
 /* hr */
-hr {
+.md-container hr {
   height: 0.25em;
   padding: 0;
   margin: 24px 0;
   background-color: #e1e4e8;
   border: none;
-}
-
-/* blockquote */
-blockquote {
-  margin: 0 0 16px;
-  padding: 0 16px;
-  color: #777;
-  border-left: 4px solid #ddd;
-}
-
-/* table */
-table {
-  display: block;
-  width: 100%;
-  overflow: auto;
-  border-collapse: collapse;
-  margin-bottom: 16px;
-}
-
-table th {
-  font-weight: 600;
-  text-align: left;
-}
-
-table td,
-table th {
-  padding: 6px 13px;
-  border: 1px solid #dfe2e5;
-}
-
-table tr {
-  background-color: #fff;
-  border-top: 1px solid #c6cbd1;
-}
-
-table tr:nth-child(2n) {
-  background-color: #f6f8fa;
 }
