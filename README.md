@@ -33,3 +33,5 @@ pnpm dev
 ### 字体：[LXGW WenKai / 霞鹜文楷](https://github.com/lxgw/LxgwWenKai)
 
 ### md编辑器：[markdown-it](https://markdown-it.github.io/markdown-it/)
+
+### md编辑器备用方案：[showdown](https://showdownjs.com/)

@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/login/login.tsx";
 import Home from "./pages/home/home.tsx";
-import Note from "./pages/note/note.tsx";
+import Note from "./pages/note/index.tsx";
 import Demo from "./pages/demo/index.tsx";
 import Aboutme from "./pages/aboutme/index.tsx";
 import Navbar from "./pages/layout/nav.tsx";

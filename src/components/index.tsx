@@ -1,3 +1,4 @@
 import WButton from "./wbutton";
+import WTimeline from "./wtimeline";
 
-export { WButton };
+export { WButton, WTimeline };
