@@ -1,4 +1,5 @@
-/* markdown styles */
+/* markdown styles 
+TODO: mdweb styles 是通过前缀“md-container”来控制的，后面需要通过postcss-prefixer来自动添加前缀，目前暂时先不做修改*/
 
 /* code block */
 .md-container .hljs {
