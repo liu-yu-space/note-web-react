@@ -1,4 +1,5 @@
 import { WTimeline, WButton } from "@/components";
+import { Link } from "react-router-dom";
 
 export default function Note() {
     return (
@@ -50,7 +51,9 @@ export default function Note() {
             </article>
             <aside className="flex flex-col absolute top-0 right-0 w-[calc(50%-400px)] h-full hover:opacity-100 opacity-90 transition-opacity duration-300">
                 <div className="flex items-center p-4 gap-3">
-                    <WButton>创建笔记</WButton>
+                    <WButton>
+                        <Link to="/note/create">创建笔记</Link>
+                    </WButton>
                     <WButton>标签管理</WButton>
                 </div>
                 <WTimeline></WTimeline>
