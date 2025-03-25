@@ -1,7 +1,7 @@
 interface ButtonProps {
     handleClick?: () => void;
     text?: string;
-    type?: "default" | "text";
+    type?: "default" | "text" | "text-white";
     children?: React.ReactNode;
 }
 
@@ -20,10 +20,19 @@ export default function WButton({
             {text}
             {children}
         </button>
-    ) : (
+    ) : type === "text" ? (
         <button
             type="button"
             className="p-1 text-sm text-[var(--color-main)] cursor-pointer hover:text-[var(--color-main-hover)]"
+            onClick={handleClick}
+        >
+            {text}
+            {children}
+        </button>
+    ) : (
+        <button
+            type="button"
+            className="p-1 text-sm text-gray-50 cursor-pointer hover:text-white"
             onClick={handleClick}
         >
             {text}
