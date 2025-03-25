@@ -10,7 +10,7 @@ TODO: mdweb styles 是通过前缀“md-container”来控制的，后面需要�
 .md-container h6 {
   margin: 8px 0;
   line-height: 1.25;
-  color: var(--color-font);
+  color: var(--color-main-font);
   font-weight: 600;
 }
 .md-container h1 {
@@ -30,6 +30,24 @@ TODO: mdweb styles 是通过前缀“md-container”来控制的，后面需要�
 }
 .md-container h6 {
   font-size: 14px;
+}
+
+/* 列表 */
+.md-container ul,
+.md-container ol {
+  padding-left: 2em;
+}
+
+.md-container li {
+  margin-bottom: 0.5em;
+}
+
+.md-container ol {
+  list-style-type: decimal;
+}
+
+.md-container ul {
+  list-style-type: initial;
 }
 
 /* code block */
@@ -95,16 +113,6 @@ TODO: mdweb styles 是通过前缀“md-container”来控制的，后面需要�
 
 .md-container a:hover {
   text-decoration: underline;
-}
-
-/* list */
-.md-container ul,
-.md-container ol {
-  padding-left: 2em;
-}
-
-.md-container li {
-  margin-bottom: 0.5em;
 }
 
 /* image */

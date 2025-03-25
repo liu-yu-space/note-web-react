@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "lxgw";
+  src: url("@/assets/fonts/LXGWWenKaiMono-Regular.ttf") format("truetype");
+}
+/* TODO: 响应式设计、主题切换，暗夜模式，国际化 */
+
+/* 级联层：theme < base < components < utilities */
+@theme {
+  --font-lxgw: lxgw;
+}
+
+@layer base {
+  :root {
+    --color-main: #40a070;
+    --color-main-font: #545454;
+    --color-main-bg: #ffffff;
+    --color-main-hover: #3a8e63;
+
+    color: var(--color-main-font);
+    font-family: sans-serif;
+  }
+}
