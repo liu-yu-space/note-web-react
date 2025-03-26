@@ -8,13 +8,13 @@ const Navbar = () => {
     const location = useLocation();
 
     // 判断是否是登录页面或 404 页面
-    if (location.pathname === "/login" || location.pathname === "/404") {
+    if (["/login", "/404", "/experiment"].includes(location.pathname)) {
         return null; // 如果是登录或404页面，不渲染导航栏
     }
 
     return (
         <nav
-            className={`flex flex-col items-center justify-between py-3 px-2 bg-gray-100 
+            className={`flex flex-col items-center justify-between py-3 bg-gray-100 
             shrink-0 fixed h-full -translate-x-[calc(100%-10px)] hover:-translate-x-0 z-50 border-r-[10px] border-r-[transparent]
             transition-all duration-300 ease-in-out shadow-xl`}
         >
@@ -34,12 +34,12 @@ const Navbar = () => {
             <div className="flex flex-col gap-4">
                 <WButton type="text">
                     <Link to="/setting">
-                        <Settings size={20} strokeWidth={1.25} />
+                        <Settings size={20} />
                     </Link>
                 </WButton>
                 <WButton type="text">
                     <Link to="/aboutme">
-                        <Info size={20} strokeWidth={1.25} />
+                        <Info size={20} />
                     </Link>
                 </WButton>
             </div>

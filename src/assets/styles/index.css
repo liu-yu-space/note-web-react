@@ -8,7 +8,15 @@
 
 /* 级联层：theme < base < components < utilities */
 @theme {
-  --font-lxgw: lxgw;
+  --color-primary: #40a070; /* 主色: 葱绿 */
+  --color-primary-light: #46af7a; /* 主色亮 */
+  --color-secondary: #a4cab6; /* 次要色 */
+  --color-background: oklch(0.985 0.002 247.839); /* 背景色 */
+  --color-primary-font: #545454; /* 主文本颜色 */
+  /* --border-color: #dddddd; 边框颜色  */
+  /* --highlight-color: #e74c3c; 高亮颜色  */
+
+  --font-lxgw: lxgw; /* 字体 */
 }
 
 @layer base {

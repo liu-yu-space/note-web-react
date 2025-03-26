@@ -55,7 +55,7 @@ export default function WTimeline() {
     ]);
 
     return (
-        <ul className="p-4 pl-30 font-lxgw text-sm text-gray-500 h-full overflow-auto">
+        <ul className="p-4 pl-30 text-sm text-gray-500 h-full overflow-auto">
             {data.map((item, index) => (
                 <li
                     key={index}

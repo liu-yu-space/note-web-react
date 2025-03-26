@@ -1,11 +1,12 @@
-import { WTimeline, WButton } from "@/components";
-import { Link } from "react-router-dom";
+import { WTimeline, WButton, WInput } from "@/components";
+import { Plus } from "lucide-react";
 
 export default function Note() {
+
     return (
         <div className="flex w-full h-full justify-center relative">
-            <article className="w-[800px] p-8">
-                <h1 className="text-xl font-bold mb-4">难说《我叫赵出息》</h1>
+            <article className="w-[800px] p-8 font-lxgw">
+                <h1 className="text-xl mb-8">难说《我叫赵出息》</h1>
                 <p className="mb-4">
                     出门看见风雨拍，
                     <br />
@@ -47,14 +48,56 @@ export default function Note() {
                     <br />
                     迎风 准备 展翅 高飞。
                     <br />
+                    谁说老天选的不是我，
+                    <br />
+                    我说太阳就不该落，
+                    <br />
+                    我说日子就该洒脱，
+                    <br />
+                    我说梦中的楼还得亲手摞，
+                    <br />
+                    我说我走的路就是我，
+                    <br />
+                    运气有借就有还，
+                    <br />
+                    管他大水漫金山，
+                    <br />
+                    正好洗我满头汗，
+                    <br />
+                    不畏 不馁 不废 不退，
+                    <br />
+                    迎风 准备 展翅 高飞。
+                    <br />
+                    谁说老天选的不是我，
+                    <br />
+                    我说太阳就不该落，
+                    <br />
+                    我说日子就该洒脱，
+                    <br />
+                    我说梦中的楼还得亲手摞，
+                    <br />
+                    我说我走的路就是我，
+                    <br />
+                    运气有借就有还，
+                    <br />
+                    管他大水漫金山，
+                    <br />
+                    正好洗我满头汗，
+                    <br />
+                    不畏 不馁 不废 不退，
+                    <br />
+                    迎风 准备 展翅 高飞。
+                    <br />
                 </p>
             </article>
-            <aside className="flex flex-col absolute top-0 right-0 w-[calc(50%-400px)] h-full hover:opacity-100 opacity-90 transition-opacity duration-300">
+            <aside 
+                className="flex flex-col fixed top-0 z-50 right-0 w-[calc(50%-400px)] h-full hover:opacity-100 
+                    opacity-10 transition-opacity duration-300">
                 <div className="flex items-center p-4 gap-3">
+                    <WInput placeholder="搜索" /> 
                     <WButton>
-                        <Link to="/note/create">创建笔记</Link>
+                        <Plus size="16" />新笔记
                     </WButton>
-                    <WButton>标签管理</WButton>
                 </div>
                 <WTimeline></WTimeline>
             </aside>

@@ -7,6 +7,7 @@ import Aboutme from "./pages/aboutme/index.tsx";
 import Navbar from "./pages/layout/nav.tsx";
 import CreateNotePage from "./pages/note/create.tsx";
 import SettingPage from "./pages/settting/index.tsx";
+import ExperimentPage from "./pages/experiment/index.tsx";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/experiment" element={<ExperimentPage />} />
                     <Route path="/note">
                         <Route index element={<Note />} />
                         <Route path=":id" element={<Note />} />
