@@ -10,6 +10,7 @@
 @theme {
   --color-primary: #40a070; /* 主色: 葱绿 */
   --color-primary-light: #46af7a; /* 主色亮 */
+  --color-primary-lighter: #40a07014; /* 主色更亮 */
   --color-secondary: #a4cab6; /* 次要色 */
   --color-background: oklch(0.985 0.002 247.839); /* 背景色 */
   --color-primary-font: #545454; /* 主文本颜色 */

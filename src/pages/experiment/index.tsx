@@ -1,4 +1,4 @@
-import { WButton, WInput } from "@/components";
+import { WButton, WInput, WCheckbox } from "@/components";
 import { Plus } from "lucide-react";
 
 export default function Experiment() {
@@ -8,5 +8,6 @@ export default function Experiment() {
         <WButton size="large"><Plus size="16"/> Hello World</WButton>
         <WButton type="text"><Plus size="16"/>Hello World</WButton>
         <WInput placeholder="搜索" /> 
+        <WCheckbox text="Remember me" />
     </div>;
 }
