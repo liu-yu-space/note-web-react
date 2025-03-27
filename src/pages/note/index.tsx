@@ -1,16 +1,15 @@
 import { WTimeline, WButton, WInput } from "@/components";
 import { Plus } from "lucide-react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export default function Note() {
-
     const navigate = useNavigate();
     const handleClick = () => {
-        void navigate('/note/create'); // 跳转到 /about 路由
-      };
+        void navigate("/note/create"); // 跳转到 /about 路由
+    };
 
     return (
-        <div className="flex w-full h-full justify-center relative">
+        <div className="flex w-full h-full justify-center relative overflow-auto">
             <article className="w-[800px] p-8 font-lxgw">
                 <h1 className="text-xl mb-8">难说《我叫赵出息》</h1>
                 <p className="mb-4">
@@ -96,14 +95,16 @@ export default function Note() {
                     <br />
                 </p>
             </article>
-            <aside 
+            <aside
                 className="flex flex-col fixed top-0 z-50 right-0 w-[calc(50%-400px)] min-w-[250px] 
                     max-w-[400px] h-full hover:opacity-100 
-                    opacity-10 transition-opacity duration-300">
+                    opacity-10 transition-opacity duration-300"
+            >
                 <div className="flex items-center p-4 gap-3">
                     <WInput placeholder="搜索" />
                     <WButton handleClick={handleClick}>
-                        <Plus size="16" />新笔记
+                        <Plus size="16" />
+                        新笔记
                     </WButton>
                 </div>
                 <WTimeline></WTimeline>
