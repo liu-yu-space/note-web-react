@@ -11,7 +11,7 @@ import ExperimentPage from "./pages/experiment/index.tsx";
 
 function App() {
     return (
-        <div className="w-dvw h-dvh flex flex">
+        <div className="w-dvw h-dvh flex">
             <Navbar />
             <div className="grow h-full">
                 <Routes>
@@ -22,6 +22,7 @@ function App() {
                         <Route index element={<Note />} />
                         <Route path=":id" element={<Note />} />
                         <Route path="create" element={<CreateNotePage />} />
+                        <Route path="edit/:id" element={<CreateNotePage />} />
                     </Route>
                     <Route path="/demo" element={<Demo />} />
                     <Route path="/aboutme" element={<Aboutme />} />

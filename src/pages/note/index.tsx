@@ -99,7 +99,7 @@ export default function Note() {
             <aside 
                 className="flex flex-col fixed top-0 z-50 right-0 w-[calc(50%-400px)] min-w-[250px] 
                     max-w-[400px] h-full hover:opacity-100 
-                    opacity-100 transition-opacity duration-300">
+                    opacity-10 transition-opacity duration-300">
                 <div className="flex items-center p-4 gap-3">
                     <WInput placeholder="搜索" />
                     <WButton handleClick={handleClick}>

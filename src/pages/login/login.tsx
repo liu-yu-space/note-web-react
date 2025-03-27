@@ -22,7 +22,7 @@ export default function Home() {
         });
     };
     return (
-        <section className="h-dvh flex justify-center items-center bg-[url(@/assets/login-bg.webp)] bg-cover bg-center">
+        <section className="h-dvh flex justify-center items-center bg-[url(@/assets/imgs/login-bg.webp)] bg-cover bg-center">
             <div className="bg-white p-8 rounded-lg shadow-xl h-100 w-180 flex">
                 <img src={LoginPerson} alt="" className="w-60 shrink-[0] mx-9" />
                 <div className="flex flex-col justify-center items-center w-100">

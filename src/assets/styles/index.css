@@ -18,6 +18,28 @@
   /* --highlight-color: #e74c3c; 高亮颜色  */
 
   --font-lxgw: lxgw; /* 字体 */
+
+  --animate-switch: flicker 0.2s ease-in-out 1;
+
+  @keyframes flicker {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  --animate-switch_: flicker_ 0.2s ease-in-out 1;
+
+  @keyframes flicker_ {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 }
 
 @layer base {

@@ -1,7 +1,7 @@
 interface ButtonProps {
     handleClick?: () => void;
     size?: "small" | "default" | "large";
-    type?: "default" | "text" | "text-white";
+    type?: "default" | "text" | "text-white" | "icon";
     children?: React.ReactNode;
 }
 
