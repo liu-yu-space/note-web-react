@@ -1,7 +1,7 @@
 interface ButtonProps {
     handleClick?: () => void;
     size?: "small" | "default" | "large";
-    type?: "default" | "text" | "text-white" | "icon";
+    type?: "default" | "text";
     children?: React.ReactNode;
 }
 
@@ -12,18 +12,20 @@ export default function WButton({
     children,
 }: ButtonProps) {
 
+    // 按钮基础样式
     const publicClassName = "shrink-0 text-sm py-1 px-2 cursor-pointer flex items-center justify-center transition-colors ";
     
-    let className = "rounded-[4px] bg-primary text-white hover:bg-primary-light active:bg-primary hover:shadow-sm";
+    // 按钮类型样式
+    let className = "rounded-[4px] bg-primary text-white hover:bg-primary-light active:bg-primary hover:shadow-sm ";
     if (type === "text") {
-        className = "text-primary rounded-[4px] hover:text-primary-light active:text-primary";
-    } else if (type === "text-white") {
-        className = "text-gray-50 rounded-[4px] hover:text-white active:text-gray-50";
+        className = "text-primary-font rounded-[4px] hover:text-primary-light active:text-primary ";
     }
+
+    // 按钮大小样式
     if (size === "small") {
-        className += " text-xs";
+        className += "text-xs ";
     } else if (size === "large") {
-        className += " text-base";
+        className += "text-base ";
     }
 
     return (

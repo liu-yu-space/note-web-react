@@ -1,4 +1,5 @@
-import { WTimeline, WButton, WInput } from "@/components";
+import { WButton, WInput } from "@/components";
+import Timeline from "./components/timeline";
 import { Plus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -107,7 +108,7 @@ export default function Note() {
                         新笔记
                     </WButton>
                 </div>
-                <WTimeline></WTimeline>
+                <Timeline></Timeline>
             </aside>
         </div>
     );

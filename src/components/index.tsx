@@ -1,6 +1,6 @@
 import WButton from "./wbutton";
-import WTimeline from "./wtimeline";
 import WInput from "./winput";
 import WSwitch from "./wswitch";
+import WTag from "./wtag";
 
-export { WButton, WTimeline, WInput, WSwitch };
+export { WButton, WInput, WSwitch, WTag };
