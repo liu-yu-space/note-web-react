@@ -11,7 +11,7 @@ export default function Experiment() {
         setChecked(!checked);
     }
 
-    return <div className="p-10 ">
+    return <div className="p-10 dark:bg-gray-800">
         <WButton><Plus size="16"/> Hello World</WButton><br/>
         <WButton size="small"><Plus size="16"/> Hello World</WButton><br/>
         <WButton size="large"><Plus size="16"/> Hello World</WButton>

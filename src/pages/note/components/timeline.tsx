@@ -97,7 +97,7 @@ export default function Timeline() {
                             </div>
                             <p className="text-gray-400 text-xs">{item.time}</p>
                         </div>
-                        <div className="absolute right-2 top-[calc(50%-10px)] opacity-0 group-hover:opacity-100">
+                        <div className="absolute right-0 top-[calc(50%-10px)] opacity-0 group-hover:opacity-100">
                             <WButton type="text"><Pencil size={16} strokeWidth={1.25} /></WButton>
                         </div>
                     </div>

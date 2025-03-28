@@ -11,7 +11,7 @@ export default function Note() {
 
     return (
         <div className="flex w-full h-full justify-center relative overflow-auto">
-            <article className="w-[800px] p-8 font-lxgw">
+            <article className="w-[800px] p-8">
                 <h1 className="text-xl mb-8">难说《我叫赵出息》</h1>
                 <p className="mb-4">
                     出门看见风雨拍，
