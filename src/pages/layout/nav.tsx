@@ -8,7 +8,7 @@ const Navbar = () => {
     const location = useLocation();
 
     // 判断是否是登录页面或 404 页面
-    if (["/login", "/404", "/experiment"].includes(location.pathname)) {
+    if (["/login", "/404"].includes(location.pathname)) {
         return null; // 如果是登录或404页面，不渲染导航栏
     }
 
@@ -29,6 +29,9 @@ const Navbar = () => {
                 </WButton>
                 <WButton type="text">
                     <Link to="/demo">Demo</Link>
+                </WButton>
+                <WButton type="text">
+                    <Link to="/experiment">实验</Link>
                 </WButton>
             </div>
             <div className="flex flex-col gap-4">

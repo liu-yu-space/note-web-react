@@ -1,5 +1,4 @@
-// 基于浏览器的深色/浅色模式，自适应主题模式，以及用户选择的主题模式
-// 优先级：用户选择的主题模式 > 自适应主题模式 > 浏览器的深色/浅色模式
+// 优先级：用户选择的主题模式 > 缓存的主题模式 > 浏览器的深色/浅色模式
 
 export default function toggleMode(mode: 'light' | 'dark' | 'auto' | undefined | void) {
     let currentMode;
