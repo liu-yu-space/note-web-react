@@ -7,37 +7,45 @@ interface WSelectOption {
 }
 interface WSelectProps {
     options?: WSelectOption[];
-    selectedId?: string;
-    onChange?: (optionId: string) => void;
+    selectedIds?: string[];
+    multi?: boolean;
+    onChange?: (optionId: string | string[]) => void;
     placeholder?: string;
 }
 
-function WSelect({ options = [], selectedId = '', onChange, placeholder = '' }: WSelectProps) {
+function WSelect({ options = [], selectedIds = [], multi = false, onChange, placeholder = '' }: WSelectProps) {
     const [isOpen, setIsOpen] = useState(false);
-    // const inputRef = useRef(null);
-    // const listboxRef = useRef(null);  
     const inputRef = useRef<HTMLInputElement | null>(null);
     const listboxRef = useRef<HTMLUListElement | null>(null);
-    const [selectedOption, setSelectedOption] = useState(options.find(option => option.id === selectedId)?.text ?? '');
+    const [selectedText, setSelectedText] = useState(options.filter(option => selectedIds.includes(option.id)).map(option => option.text));
 
+    // 打开/关闭下拉框
     const toggleList = () => setIsOpen(!isOpen);
 
+    // 选择选项
     const selectOption = (option: WSelectOption) => {
-        setSelectedOption(option.text);
+        if (multi) {
+            if (selectedText.includes(option.text)) {
+                setSelectedText(selectedText.filter(text => text !== option.text));
+            } else {
+                setSelectedText([...selectedText, option.text]);
+            }
+        } else {
+            setSelectedText([option.text]);
+        }
+
         setIsOpen(false);
+        
         if (onChange) {
-            onChange(option.id);
+            if (multi) {
+                onChange(selectedText.map(text => options.find(option => option.text === text)?.id ?? ''));
+            } else {
+                onChange(options.find(option => option.text === selectedText[0])?.id ?? '');
+            }
         }
     };
 
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        console.log(e);
-        if (!inputRef?.current?.contains(e.relatedTarget) && !listboxRef?.current?.contains(e.relatedTarget)) {
-            setIsOpen(false);
-        }
-    };
-
-    // Ensure that the listbox is closed when focus is lost from both the input and list
+    // 点击其他地方关闭下拉框
     useEffect(() => {
         const handleDocumentClick = (e: MouseEvent) => {
             const target = e.target as Node;
@@ -45,9 +53,6 @@ function WSelect({ options = [], selectedId = '', onChange, placeholder = '' }: 
             if (!inputRef.current?.contains(target) && !listboxRef.current?.contains(target)) {
                 setIsOpen(false);
             }
-            // if (!inputRef.current?.contains(e.target) && !listboxRef.current?.contains(e.target)) {
-            //     setIsOpen(false);
-            // }
         };
 
         document.addEventListener('click', handleDocumentClick);
@@ -64,23 +69,24 @@ function WSelect({ options = [], selectedId = '', onChange, placeholder = '' }: 
                 className="border border-gray-300 rounded-md py-1 pl-2 pr-8 w-full outline-none focus:border-primary cursor-pointer"
                 role="combobox"
                 aria-haspopup="listbox"
-                value={selectedOption}
+                value={selectedText.join(', ')}
+                title={selectedText.join(', ')}
                 onClick={toggleList}
-                onBlur={handleBlur}
                 ref={inputRef}
                 readOnly
             />
-            <ChevronDown className='absolute right-1 top-1 h-6 w-6 text-gray-300' strokeWidth={1.25} size={16}/>
+            <ChevronDown className='absolute right-1 top-0.5 h-6 w-6 text-gray-300' strokeWidth={1} size={16}/>
             {isOpen && (
                 <ul ref={listboxRef} role="listbox" 
-                    className='absolute w-full max-h-60 overflow-y-auto bg-white border border-gray-300 rounded-md shadow-sm z-10 py-1'>
+                    className='absolute w-full max-h-60 overflow-y-auto bg-white border border-gray-300 
+                    rounded-md shadow-sm z-10 py-1'>
                     {options.map(option => (
                         <li 
                             key={option.id} 
                             role="option" 
                             tabIndex={0} 
                             onClick={() => selectOption(option)}
-                            className={`px-2 py-1 cursor-pointer hover:bg-gray-100 ${selectedOption === option.text? 'bg-gray-100' : ''}`}
+                            className={`px-2 py-1 cursor-pointer hover:bg-gray-100 ${selectedText.includes(option.text) ? 'bg-gray-100' : ''}`}
                         >
                             {option.text}
                         </li>
