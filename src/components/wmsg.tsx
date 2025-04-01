@@ -6,13 +6,13 @@ interface WMsgProps {
 }
 
 const IconMap = {
-    info: Info,
-    success: CircleCheck,
-    warning: CircleAlert,
-    error: CircleX,
+    info: <Info />,
+    success: <CircleCheck />,
+    warning: <CircleAlert />,
+    error: <CircleX />,
 } as const;
 
-export default function WMsg({text = '消息', type = 'info'}: WMsgProps) {
+function WMsg({text = '消息', type = 'info'}: WMsgProps) {
     return <div className={`w-msg w-msg-${type}`}>
         <div className="w-msg-icon">
             {IconMap[type]}
@@ -20,3 +20,5 @@ export default function WMsg({text = '消息', type = 'info'}: WMsgProps) {
         <div className="w-msg-text">{text}</div>
     </div>;
 }
+
+export default WMsg;

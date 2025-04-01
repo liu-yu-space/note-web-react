@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 interface WSelectOption {
@@ -13,7 +13,9 @@ interface WSelectProps {
     placeholder?: string;
 }
 
-function WSelect({ options = [], selectedIds = [], multi = false, onChange, placeholder = '' }: WSelectProps) {
+const emptyOptions: WSelectOption[] = [];
+const emptySelectedIds: string[] = []; 
+function WSelect({ options = emptyOptions, selectedIds = emptySelectedIds, multi = false, onChange, placeholder = '' }: WSelectProps) {
     const [isOpen, setIsOpen] = useState(false);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const listboxRef = useRef<HTMLUListElement | null>(null);

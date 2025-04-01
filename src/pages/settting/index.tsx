@@ -95,12 +95,12 @@ export default function SettingsPage() {
                 ))}
             </div>
             <div className="p-4 bg-gray-100 rounded-md w-full">
-                {activeSettingList.map((item, index) => (
-                    <div key={index} className="flex items-center mb-2 text-sm">
+                {activeSettingList.map((item) => (
+                    <div key={item.text} className="flex items-center mb-2 text-sm">
                         <div className="flex justify-center items-center mr-2">{item.text}</div>
                         <div className="flex flex-col">
                             {item.type === "select" && (
-                                <WSelect options={item.options} selectedId={item.default} />
+                                <WSelect options={item.options} selectedIds={[item.default]} />
                             )}
                         </div>
                     </div>

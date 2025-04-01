@@ -29,5 +29,8 @@ export default function Experiment() {
                 {id: '11', text: '选项11'}, {id: '12', text: '选项12'}, {id: '13', text: '选项13'},
                 ]} selectedIds={['1']} multi={true}/>
         </div>
+        <div className="p-4">
+            <WButton>测试msg</WButton>
+        </div>
     </div>;
 }
