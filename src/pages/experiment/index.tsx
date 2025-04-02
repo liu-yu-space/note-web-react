@@ -1,6 +1,7 @@
 import { WButton, WInput, WSwitch, WTag, WSelect } from "@/components";
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import { useMsgContext } from "@/components/wmsg.tsx";
 
 export default function Experiment() {
 
@@ -11,6 +12,10 @@ export default function Experiment() {
         setChecked(!checked);
     }
 
+    const { addMsg } = useMsgContext();
+    function handleClick2() {
+        addMsg("Hello World", "success", 10000);
+    }
     return <div className="p-10">
         <WButton><Plus size="16"/> Hello World</WButton><br/>
         <WButton size="small"><Plus size="16"/> Hello World</WButton><br/>
@@ -30,7 +35,7 @@ export default function Experiment() {
                 ]} selectedIds={['1']} multi={true}/>
         </div>
         <div className="p-4">
-            <WButton>测试msg</WButton>
+            <WButton handleClick={handleClick2}>测试msg</WButton>
         </div>
     </div>;
 }

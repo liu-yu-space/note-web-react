@@ -5,13 +5,17 @@ import "./assets/styles/index.css";
 import "./assets/styles/md.css";
 import App from "./App.tsx";
 import toggleMode from "./lib/mode.ts";
+import { WMsg, GlobalMsgProvider } from "./components/wmsg.tsx";
 
 toggleMode();
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <GlobalMsgProvider>
+            <WMsg />
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </GlobalMsgProvider>
     </StrictMode>
 );

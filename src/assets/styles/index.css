@@ -1,57 +1,67 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @font-face {
-  font-family: "lxgw";
-  src: url("@/assets/fonts/LXGWWenKaiMono-Regular.ttf") format("truetype");
+    font-family: 'lxgw';
+    src: url('@/assets/fonts/LXGWWenKaiMono-Regular.ttf') format('truetype');
 }
 /* TODO: 响应式设计、主题切换，暗夜模式，国际化 */
 
 /* 级联层：theme < base < components < utilities */
 @theme {
-  --color-primary: #40a070; /* 主色: 葱绿 */
-  --color-primary-light: #46af7a; /* 主色亮: 葱绿亮 */
-  --color-primary-shadow: #40a07014; /* 主色阴影: 葱绿更亮 */
-  --color-primary-font: #545454; /* 主文本颜色: 黑绿色 */
-  --color-secondary: #a4cab6; /* 次要色 */
-  --color-background: oklch(0.985 0.002 247.839); /* 背景色：灰色 */
-  /* --border-color: #dddddd; 边框颜色  */
-  /* --highlight-color: #e74c3c; 高亮颜色  */
+    --color-primary: #40a070; /* 主色: 葱绿 */
+    --color-primary-light: #46af7a; /* 主色亮: 葱绿亮 */
+    --color-primary-shadow: #40a07014; /* 主色阴影: 葱绿更亮 */
+    --color-primary-font: #545454; /* 主文本颜色: 黑绿色 */
+    --color-secondary: #a4cab6; /* 次要色 */
+    --color-background: oklch(0.985 0.002 247.839); /* 背景色：灰色 */
+    /* --border-color: #dddddd; 边框颜色  */
+    /* --highlight-color: #e74c3c; 高亮颜色  */
 
-  --font-lxgw: lxgw; /* 字体 */
+    --font-lxgw: lxgw; /* 字体 */
 
-  --animate-switch: flicker 0.2s ease-in-out 1;
-
-  @keyframes flicker {
-    0% {
-      opacity: 0;
+    /* switch 组件切换动画 */
+    --animate-switch: flicker 0.2s ease-in-out 1;
+    @keyframes flicker {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
     }
-    100% {
-      opacity: 1;
-    }
-  }
 
-  --animate-switch_: flicker_ 0.2s ease-in-out 1;
+    --animate-switch_: flicker_ 0.2s ease-in-out 1;
+    @keyframes flicker_ {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
 
-  @keyframes flicker_ {
-    0% {
-      opacity: 0;
+    /* msg组件显示、隐藏动画 */
+    --animate-msg-show: showmsg 0.3s ease-in-out 1;
+    @keyframes showmsg {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
     }
-    100% {
-      opacity: 1;
-    }
-  }
 }
 
 @layer base {
-  :root {
-    --color-main: #40a070;
-    --color-main-font: #545454;
-    --color-main-bg: #ffffff;
-    --color-main-hover: #3a8e63;
+    :root {
+        --color-main: #40a070;
+        --color-main-font: #545454;
+        --color-main-bg: #ffffff;
+        --color-main-hover: #3a8e63;
 
-    color: var(--color-main-font);
-    font-family: sans-serif;
-  }
+        color: var(--color-main-font);
+        font-family: sans-serif;
+    }
 }
