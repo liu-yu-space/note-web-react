@@ -13,7 +13,7 @@ export default function WButton({
 }: ButtonProps) {
 
     // 按钮基础样式
-    const publicClassName = "shrink-0 text-sm py-1 px-2 cursor-pointer flex items-center justify-center transition-colors ";
+    const publicClassName = "shrink-0 py-1 px-2 cursor-pointer flex items-center justify-center transition-colors ";
     
     // 按钮类型样式
     let className = "rounded-[4px] bg-primary text-white hover:bg-primary-light active:bg-primary hover:shadow-sm ";
@@ -25,7 +25,9 @@ export default function WButton({
     if (size === "small") {
         className += "text-xs ";
     } else if (size === "large") {
-        className += "text-base ";
+        className += "text-base";
+    } else {
+        className += "text-sm";
     }
 
     return (

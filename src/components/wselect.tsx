@@ -22,7 +22,25 @@ function WSelect({ options = emptyOptions, selectedIds = emptySelectedIds, multi
     const [selectedText, setSelectedText] = useState(options.filter(option => selectedIds.includes(option.id)).map(option => option.text));
 
     // 打开/关闭下拉框
-    const toggleList = () => setIsOpen(!isOpen);
+    const toggleList = () => {
+        if (isOpen) {
+            handleClose();
+        } else {
+            setIsOpen(true);
+        }
+    };
+
+    // 关闭弹窗
+    const handleClose = () => {
+        if (onChange) {
+            if (multi) {
+                onChange(selectedText.map(text => options.find(option => option.text === text)?.id ?? ''));
+            } else {
+                onChange(options.find(option => option.text === selectedText[0])?.id ?? '');
+            }
+        }
+        setIsOpen(false);
+    };
 
     // 选择选项
     const selectOption = (option: WSelectOption) => {
@@ -34,16 +52,7 @@ function WSelect({ options = emptyOptions, selectedIds = emptySelectedIds, multi
             }
         } else {
             setSelectedText([option.text]);
-        }
-
-        setIsOpen(false);
-        
-        if (onChange) {
-            if (multi) {
-                onChange(selectedText.map(text => options.find(option => option.text === text)?.id ?? ''));
-            } else {
-                onChange(options.find(option => option.text === selectedText[0])?.id ?? '');
-            }
+            handleClose();
         }
     };
 
@@ -53,7 +62,7 @@ function WSelect({ options = emptyOptions, selectedIds = emptySelectedIds, multi
             const target = e.target as Node;
         
             if (!inputRef.current?.contains(target) && !listboxRef.current?.contains(target)) {
-                setIsOpen(false);
+                handleClose();
             }
         };
 

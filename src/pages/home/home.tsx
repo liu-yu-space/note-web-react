@@ -1,10 +1,24 @@
 import BookGril from "@/assets/imgs/book-gril1.png";
+import { WButton } from "@/components";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Home() {
+    const navigate = useNavigate();
+    const handleClick = (route: string) => {
+        void navigate(route); // 跳转到 /about 路由
+    };
+
     return (
         <main className="overflow-auto">
             <section className=" flex justify-center items-center gap-10 p-10 min-h-[calc(100vh-100px)]">
-                <div>其进锐者，其退速。- 孟子</div>
+                <div>
+                    其进锐者，其退速。- 孟子
+                    <div className="mt-10 flex gap-5">
+                        <WButton handleClick={() => handleClick('/note')} size="large" type="default">创建笔记</WButton>
+                        <WButton handleClick={() => handleClick('/exercises')} size="large" type="default">进入练习</WButton>
+                    </div>
+                </div>
                 <img src={BookGril} alt="" className="w-3/12" />
             </section>
         </main>

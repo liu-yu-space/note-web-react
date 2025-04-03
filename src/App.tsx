@@ -8,6 +8,7 @@ import Navbar from "./pages/layout/nav.tsx";
 import CreateNotePage from "./pages/note/create.tsx";
 import SettingPage from "./pages/settting/index.tsx";
 import ExperimentPage from "./pages/experiment/index.tsx";
+import Exercises from "./pages/exercises/index.tsx";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                         <Route path="create" element={<CreateNotePage />} />
                         <Route path="edit/:id" element={<CreateNotePage />} />
                     </Route>
+                    <Route path="/exercises" element={<Exercises />} />
                     <Route path="/demo" element={<Demo />} />
                     <Route path="/aboutme" element={<Aboutme />} />
                     <Route path="/setting" element={<SettingPage />} />

@@ -2,6 +2,7 @@ import { useContext, createContext } from 'react';
 
 // 创建一个上下文用来管理全局消息
 interface GlobalMsgContextType {
+    id: string,
     text: string;
     type: 'error' | 'success' | 'warning' | 'info';
     duration: number;

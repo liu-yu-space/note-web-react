@@ -43,13 +43,27 @@
     }
 
     /* msg组件显示、隐藏动画 */
-    --animate-msg-show: showmsg 0.3s ease-in-out 1;
+    --animate-msg-show: showmsg 0.5s ease-in-out 1;
     @keyframes showmsg {
         0% {
+            transform: translateY(-50px);
             opacity: 0;
         }
         100% {
+            transform: translateY(0px);
             opacity: 1;
+        }
+    }
+
+    --animate-msg-hide: hidemsg 0.5s ease-in-out 1;
+    @keyframes hidemsg {
+        0% {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-50px);
+            opacity: 0;
         }
     }
 }

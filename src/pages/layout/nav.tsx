@@ -28,10 +28,13 @@ const Navbar = () => {
                     <Link to="/note">笔记</Link>
                 </WButton>
                 <WButton type="text">
-                    <Link to="/demo">Demo</Link>
+                    <Link to="/exercises">习题</Link>
                 </WButton>
                 <WButton type="text">
-                    <Link to="/experiment">实验</Link>
+                    <Link to="/demo">demo</Link>
+                </WButton>
+                <WButton type="text">
+                    <Link to="/experiment">组件</Link>
                 </WButton>
             </div>
             <div className="flex flex-col gap-4">

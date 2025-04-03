@@ -17,7 +17,7 @@ export default function WSwitch({
 
     return <div 
         className={`inline-flex rounded-full bg-blue-400 p-1 text-white text-sm cursor-pointer select-none
-            items-center w-16 justify-between relative ${checked ? "" : "justify-end"}`}
+            items-center w-16 shrink-0 justify-between relative ${checked ? "" : "justify-end"}`}
         style={{backgroundColor: color}}
         onClick={() => onChange && onChange(!checked)}
     >

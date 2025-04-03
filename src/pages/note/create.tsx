@@ -3,7 +3,7 @@ import showdown from "showdown";
 import Editor from "./components/editor_";
 import Note from "./components/note";
 import { Save } from "lucide-react";
-import { WButton, WSwitch } from "@/components";
+import { WButton, WSwitch, WSelect } from "@/components";
 import { useNavigate } from 'react-router-dom';
 
 export default function CreateNotePage() {
@@ -43,6 +43,18 @@ export default function CreateNotePage() {
                     <div className="flex items-center gap-2">
                         <WSwitch checked={checked} onText="公开" offText="草稿" onChange={handleClick}/>
                         <WButton type="text"><Save size={22} strokeWidth={1.25} /></WButton>
+                        <WSelect
+                            options={[
+                                { id: '1', text: '标签1' },
+                                { id: '2', text: '标签2' },
+                                { id: '3', text: '标签3' },
+                                { id: '4', text: '标签4' },
+                                { id: '5', text: '标签5' },
+                            ]}
+                            selectedIds={['1']}
+                            multi={true}
+                            placeholder="选择标签"
+                        />
                     </div>
                     <WButton handleClick={() => void navigate("/note")}>返回列表</WButton>
                 </div>
