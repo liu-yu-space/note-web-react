@@ -1,52 +1,53 @@
 {
-  "name": "note-web-react",
-  "private": true,
-  "version": "0.0.1",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "prepare": "husky"
-  },
-  "lint-staged": {
-    "**/*.{js,ts,jsx,tsx,vue}": "eslint",
-    "**/*.{json,md,css,scss}": "prettier --write"
-  },
-  "dependencies": {
-    "@types/markdown-it": "^14.1.2",
-    "@types/showdown": "^2.0.6",
-    "lucide-react": "^0.479.0",
-    "markdown-it": "^14.1.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-router-dom": "^7.3.0",
-    "showdown": "^2.1.0"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^19.8.0",
-    "@commitlint/config-conventional": "^19.8.0",
-    "@eslint/js": "^9.21.0",
-    "@tailwindcss/postcss": "^4.0.12",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@types/react-router-dom": "^5.3.3",
-    "@vitejs/plugin-react-swc": "^3.8.0",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.21.0",
-    "eslint-plugin-react-dom": "^1.31.0",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "eslint-plugin-react-x": "^1.31.0",
-    "globals": "^15.15.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.4.3",
-    "postcss": "^8.5.3",
-    "prettier": "^3.5.3",
-    "tailwindcss": "^4.0.12",
-    "typescript": "~5.7.2",
-    "typescript-eslint": "^8.24.1",
-    "vite": "^6.2.0"
-  }
+    "name": "note-web-react",
+    "private": true,
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "lint": "eslint .",
+        "preview": "vite preview",
+        "prepare": "husky"
+    },
+    "lint-staged": {
+        "**/*.{js,ts,jsx,tsx,vue}": "eslint",
+        "**/*.{json,md,css,scss}": "prettier --write"
+    },
+    "dependencies": {
+        "@types/markdown-it": "^14.1.2",
+        "@types/showdown": "^2.0.6",
+        "dompurify": "^3.2.5",
+        "lucide-react": "^0.479.0",
+        "markdown-it": "^14.1.0",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-router-dom": "^7.3.0",
+        "showdown": "^2.1.0"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^19.8.0",
+        "@commitlint/config-conventional": "^19.8.0",
+        "@eslint/js": "^9.21.0",
+        "@tailwindcss/postcss": "^4.0.12",
+        "@types/react": "^19.0.10",
+        "@types/react-dom": "^19.0.4",
+        "@types/react-router-dom": "^5.3.3",
+        "@vitejs/plugin-react-swc": "^3.8.0",
+        "autoprefixer": "^10.4.20",
+        "eslint": "^9.21.0",
+        "eslint-plugin-react-dom": "^1.31.0",
+        "eslint-plugin-react-hooks": "^5.1.0",
+        "eslint-plugin-react-refresh": "^0.4.19",
+        "eslint-plugin-react-x": "^1.31.0",
+        "globals": "^15.15.0",
+        "husky": "^9.1.7",
+        "lint-staged": "^15.4.3",
+        "postcss": "^8.5.3",
+        "prettier": "^3.5.3",
+        "tailwindcss": "^4.0.12",
+        "typescript": "~5.7.2",
+        "typescript-eslint": "^8.24.1",
+        "vite": "^6.2.0"
+    }
 }

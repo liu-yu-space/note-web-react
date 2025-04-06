@@ -1,24 +1,24 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Lock, User } from "lucide-react";
-import LoginPerson from "@/assets/imgs/login-person.jpg";
-import { WButton } from "../../components/index.tsx";
-import http from "@/network/http.ts";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Lock, User } from 'lucide-react';
+import LoginPerson from '@/assets/imgs/login-person.jpg';
+import { WButton } from '../../components/index.tsx';
+import http from '@/lib/http.ts';
 
 export default function Home() {
     const navigate = useNavigate();
-    const [name, setName] = useState("");
-    const [password, setPassword] = useState("");
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleClick = () => {
-        void http("/auth/login", {
-            method: "POST",
+        void http('/auth/login', {
+            method: 'POST',
             body: JSON.stringify({
                 name,
                 password,
             }),
         }).then(() => {
-            void navigate("/");
+            void navigate('/');
         });
     };
     return (
@@ -37,7 +37,7 @@ export default function Home() {
                                 placeholder="用户名"
                                 className="grow p-1 outline-none"
                                 value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                onChange={e => setName(e.target.value)}
                             />
                         </label>
                         <label className="flex items-center mt-4 mb-10 border border-gray-300 w-60 px-2 py-1.5 rounded-[4px]">
@@ -47,7 +47,7 @@ export default function Home() {
                                 placeholder="密码"
                                 className="grow p-1 outline-none"
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={e => setPassword(e.target.value)}
                             />
                         </label>
                         <WButton handleClick={handleClick}>登录</WButton>

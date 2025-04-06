@@ -1,14 +1,14 @@
-import { Info, Settings } from "lucide-react";
-import { useLocation } from "react-router-dom";
-import logo from "@/assets/imgs/open-book.svg";
-import WButton from "@/components/wbutton";
-import { Link } from "react-router-dom";
+import { Info, Settings, LogOut } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+import logo from '@/assets/imgs/open-book.svg';
+import WButton from '@/components/wbutton';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const location = useLocation();
 
     // 判断是否是登录页面或 404 页面
-    if (["/login", "/404"].includes(location.pathname)) {
+    if (['/login', '/404'].includes(location.pathname)) {
         return null; // 如果是登录或404页面，不渲染导航栏
     }
 
@@ -47,6 +47,15 @@ const Navbar = () => {
                     <Link to="/aboutme">
                         <Info size={20} />
                     </Link>
+                </WButton>
+                <WButton
+                    type="text"
+                    handleClick={() => {
+                        console.log('退出登录');
+                        window.location.href = '/login';
+                    }}
+                >
+                    <LogOut size={20} />
                 </WButton>
             </div>
         </nav>
