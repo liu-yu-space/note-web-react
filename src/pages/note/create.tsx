@@ -105,7 +105,7 @@ export default function CreateNotePage() {
                     onChange={e => setTitle(e.target.value.trim())}
                     className="w-full mb-4 p-4 border-gray-300 outline-none bg-gray-50 focus:bg-gray-100 transition-all duration-300"
                 />
-                <Editor onTextUpdate={updateText} />
+                <Editor onTextUpdate={updateText} text={content} />
             </div>
             <hr className="origin-top-left rotate-90 absolute w-[calc(100vh-2rem)] left-[50%] text-gray-300 top-4" />
             <div className="w-1/2 h-full p-4 flex flex-col">
@@ -121,6 +121,7 @@ export default function CreateNotePage() {
                             options={tags}
                             selectedIds={tagIds}
                             multi={true}
+                            size="sm"
                             placeholder="选择标签"
                             onChange={handleSelect}
                         />
