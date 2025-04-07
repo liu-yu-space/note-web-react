@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, User } from 'lucide-react';
 import LoginPerson from '@/assets/imgs/login-person.jpg';
-import { WButton } from '../../components/index.tsx';
+import { WButton, WInput } from '../../components/index.tsx';
 import http from '@/lib/http.ts';
 
 export default function Home() {
@@ -30,27 +30,23 @@ export default function Home() {
                         学而时习之,不亦说乎！
                     </h1>
                     <p className="text-sm flex flex-col items-center mt-5">
-                        <label className="mt-4 border border-gray-300 w-60 flex items-center px-2 py-1.5 rounded-[4px]">
-                            <User className="w-5 h-5 text-(--color-main) mr-1" />
-                            <input
-                                type="text"
-                                placeholder="用户名"
-                                className="grow p-1 outline-none"
-                                value={name}
-                                onChange={e => setName(e.target.value)}
-                            />
-                        </label>
-                        <label className="flex items-center mt-4 mb-10 border border-gray-300 w-60 px-2 py-1.5 rounded-[4px]">
-                            <Lock className="w-5 h-5 text-(--color-main) mr-1" />
-                            <input
-                                type="password"
+                        <div className="flex w-60 mt-4">
+                            <WInput placeholder="用户名" size="md" onChange={e => setName(e.target.value)} childrenPosition='left'>
+                                <User size={18} className="text-(--color-main)" />
+                            </WInput>
+                        </div>
+                        <div className="flex w-60 mt-4 mb-10 ">
+                            <WInput
                                 placeholder="密码"
-                                className="grow p-1 outline-none"
-                                value={password}
+                                size="md"
+                                type="password"
                                 onChange={e => setPassword(e.target.value)}
-                            />
-                        </label>
-                        <WButton onClick={handleClick}>登录</WButton>
+                                childrenPosition='left'
+                            >
+                                <Lock size={18} className="text-(--color-main)" />
+                            </WInput>
+                        </div>
+                        <WButton onClick={handleClick}> 点击登录 </WButton>
                     </p>
                 </div>
             </div>

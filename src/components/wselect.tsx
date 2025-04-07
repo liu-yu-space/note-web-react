@@ -1,29 +1,30 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 
-interface WSelectOption {
-    id: number;
+interface WSelectOption<T extends string | number> {
+    id: T;
     name: string;
 }
-interface WSelectProps {
-    options?: WSelectOption[];
-    selectedIds?: number[];
+
+interface WSelectProps<T extends string | number> {
+    options: WSelectOption<T>[];
+    selectedIds: T[];
     multi?: boolean;
-    size?: 'xs' |'sm' |'md' | 'lg';
-    onChange?: (optionId: number | number[]) => void;
+    size?: 'xs' | 'sm' | 'md' | 'lg';
+    onChange?: (selectedIds: T[]) => void;
     placeholder?: string;
 }
 
-const emptyOptions: WSelectOption[] = [];
-const emptySelectedIds: number[] = [];
-function WSelect({
-    options = emptyOptions,
-    selectedIds = emptySelectedIds,
+const emptyOptions: WSelectOption<string | number>[] = [];
+const emptySelectedIds: (string | number)[] = [];
+function WSelect<T extends string | number>({
+    options = emptyOptions as WSelectOption<T>[],
+    selectedIds = emptySelectedIds as T[],
     multi = false,
     size = 'md',
     onChange,
     placeholder = '请选择',
-}: WSelectProps) {
+}: WSelectProps<T>) {
     const [isOpen, setIsOpen] = useState(false);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const listboxRef = useRef<HTMLUListElement | null>(null);
@@ -57,7 +58,7 @@ function WSelect({
     };
 
     // 选择选项
-    const selectOption = (option: WSelectOption) => {
+    const selectOption = (option: WSelectOption<T>) => {
         if (multi) {
             if (onChange) {
                 onChange(selectedIds.includes(option.id) ? selectedIds.filter(id => id!== option.id) : [...selectedIds, option.id]);
