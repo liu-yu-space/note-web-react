@@ -41,7 +41,7 @@ export default function Timeline({
                             <p className="text-gray-400 text-xs">{item.createdDate}</p>
                         </div>
                         <div className="absolute right-0 top-[calc(50%-10px)] opacity-0 group-hover:opacity-100">
-                            <WButton type="text" handleClick={onEdit && (() => onEdit(item.id))}>
+                            <WButton type="text" onClick={onEdit && (() => onEdit(item.id))}>
                                 <Pencil size={16} strokeWidth={1.25} />
                             </WButton>
                         </div>

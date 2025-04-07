@@ -11,13 +11,13 @@ const Settings = [
             type: "select",
             options: [{
                 id: "light",
-                text: "浅色",
+                name: "浅色",
             }, {
                 id: "dark",
-                text: "深色",
+                name: "深色",
             }, {
                 id: "system",
-                text: "跟随系统",
+                name: "跟随系统",
             }],
             default: "system",
         }],
@@ -30,10 +30,10 @@ const Settings = [
             type: "select",
             options: [{
                 id: "left",
-                text: "左侧",
+                name: "左侧",
             }, {
                 id: "top",
-                text: "顶部",
+                name: "顶部",
             }],
             default: "left",
         }, {
@@ -41,10 +41,10 @@ const Settings = [
             type: "select",
             options: [{
                 id: "always",
-                text: "始终显示",
+                name: "始终显示",
             }, {
                 id: "auto",
-                text: "自动隐藏",
+                name: "自动隐藏",
             }],
             default: "auto",
         }],
@@ -57,13 +57,13 @@ const Settings = [
             type: "select",
             options: [{
                 id: "simple",
-                text: "简约",
+                name: "简约",
             }, {
                 id: "card",
-                text: "卡片",
+                name: "卡片",
             }, {
                 id: "list",
-                text: "列表",
+                name: "列表",
             }],
             default: "simple",
         }],

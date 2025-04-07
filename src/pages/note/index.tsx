@@ -1,6 +1,6 @@
 import { WButton, WInput } from '@/components';
 import Timeline from './components/timeline';
-import { Plus } from 'lucide-react';
+import { Plus, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import type { Note as NoteType, FullNote } from '@/types';
@@ -61,8 +61,10 @@ export default function NotePage() {
                     opacity-10 transition-opacity duration-300"
             >
                 <div className="flex items-center p-4 gap-3">
-                    <WInput placeholder="搜索" />
-                    <WButton handleClick={handleClick}>
+                    <WInput placeholder="搜索" childrenPosition='right' size='sm'>
+                        <Search size="18" color='#aaa'/>
+                    </WInput>
+                    <WButton onClick={handleClick}>
                         <Plus size="16" />
                         新笔记
                     </WButton>

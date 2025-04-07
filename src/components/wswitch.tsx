@@ -8,7 +8,7 @@ interface WCheckboxProps {
 }
 
 export default function WSwitch({
-    onText = "On", offText = "Off", 
+    onText = "", offText = "", 
     onColor = "#40a070", offColor = "gray", 
     checked = false, onChange}: WCheckboxProps) {
 
@@ -16,13 +16,13 @@ export default function WSwitch({
     const color = checked ? onColor : offColor;
 
     return <div 
-        className={`inline-flex rounded-full bg-blue-400 p-1 text-white text-sm cursor-pointer select-none
-            items-center w-16 shrink-0 justify-between relative ${checked ? "" : "justify-end"}`}
+        className={`inline-flex h-5 rounded-full bg-blue-400 p-0.5 text-white text-sm cursor-pointer select-none
+            items-center w-14 shrink-0 justify-between relative ${checked ? "" : "justify-end"}`}
         style={{backgroundColor: color}}
         onClick={() => onChange && onChange(!checked)}
     >
-        <span className={`block text-xs px-2 ${checked ? "animate-switch_" : "animate-switch"}`}>{text}</span> 
-        <span className={`absolute right-0.5 block w-4 h-4 mx-0.5 rounded-full bg-white shadow-inner transition-transform 
-            duration-200 ${checked ? "" : "-translate-x-10"}`}></span>
+        <span className={`block text-xs px-1.5 ${checked ? "animate-switch_" : "animate-switch"}`}>{text}</span> 
+        <span className={`absolute right-0 block w-4 h-4 mx-0.5 rounded-full bg-white shadow-inner transition-transform 
+            duration-300 ${checked ? "" : "-translate-x-9"}`}></span>
     </div>;
 }   

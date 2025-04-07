@@ -50,7 +50,7 @@ const Navbar = () => {
                 </WButton>
                 <WButton
                     type="text"
-                    handleClick={() => {
+                    onClick={() => {
                         console.log('退出登录');
                         window.location.href = '/login';
                     }}

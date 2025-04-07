@@ -74,7 +74,7 @@ function WMsg() {
         <div className="fixed z-100 top-6 right-[50%] translate-x-[50%] flex flex-col gap-2">
             {animatedMessages.map(({ id, text, type, isVisible }) => (
                 <div
-                    className={`text-white flex shadow-lg rounded-sm px-4 py-2 gap-2 items-center
+                    className={`text-white flex shadow-lg rounded-sm px-4 py-2 gap-2 items-center min-w-40 max-w-sm 
                         ${IconMap[type].color} ${isVisible ? 'animate-msg-show' : 'animate-msg-hide'}`}
                     key={id}
                 >

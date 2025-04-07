@@ -50,7 +50,7 @@ export default function Home() {
                                 onChange={e => setPassword(e.target.value)}
                             />
                         </label>
-                        <WButton handleClick={handleClick}>登录</WButton>
+                        <WButton onClick={handleClick}>登录</WButton>
                     </p>
                 </div>
             </div>

@@ -1,14 +1,14 @@
 interface ButtonProps {
-    handleClick?: () => void;
-    size?: "small" | "default" | "large";
+    onClick?: () => void;
+    size?: "xs" | "sm" | "md" | "lg";
     type?: "default" | "text";
     children?: React.ReactNode;
 }
 
 export default function WButton({
-    handleClick,
+    onClick,
     type = "default",
-    size = "default",
+    size = "md",
     children,
 }: ButtonProps) {
 
@@ -22,19 +22,21 @@ export default function WButton({
     }
 
     // 按钮大小样式
-    if (size === "small") {
+    if (size === "xs") {
         className += "text-xs ";
-    } else if (size === "large") {
-        className += "text-base";
+    } else if (size === "sm") {
+        className += "text-sm ";
+    } else if (size === "lg") {
+        className += "text-lg";
     } else {
-        className += "text-sm";
+        className += "text-base";
     }
 
     return (
         <button
             type="button"
             className={publicClassName + className}
-            onClick={handleClick}
+            onClick={onClick}
         >
             {children}
         </button>

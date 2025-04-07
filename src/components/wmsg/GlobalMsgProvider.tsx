@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { GlobalMsgContext } from './createContext';
 import { idCreator } from '@/utils/tools';
 
@@ -9,6 +9,9 @@ interface GlobalMsgContextType {
     type: 'error' | 'success' | 'warning' | 'info';
     duration: number;
 }
+
+// 创建一个全局对象
+import { globalMsgManager } from '@/utils/globalMsgManager';
 
 // 创建一个全局消息提供者，提供一个消息列表和一个添加消息的方法
 function GlobalMsgProvider({ children }: { children: React.ReactNode }) {
@@ -23,7 +26,13 @@ function GlobalMsgProvider({ children }: { children: React.ReactNode }) {
         },
         [setMsgList]
     );
-    return <GlobalMsgContext value={{ msgList, addMsg }}>{children}</GlobalMsgContext>;
+
+    // 初始化全局对象
+    globalMsgManager.addMsg = addMsg;
+
+    const contextValue = useMemo(() => ({ msgList, addMsg }), [msgList, addMsg])
+    return <GlobalMsgContext value={contextValue}>{children}</GlobalMsgContext>;
+
 }
 
 export default GlobalMsgProvider;

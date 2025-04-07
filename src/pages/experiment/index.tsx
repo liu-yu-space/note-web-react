@@ -1,5 +1,5 @@
 import { WButton, WInput, WSwitch, WTag, WSelect } from '@/components';
-import { Plus } from 'lucide-react';
+import { Plus, Search } from 'lucide-react';
 import { useState } from 'react';
 import { useMsgContext } from '@/components/wmsg/createContext';
 
@@ -12,21 +12,42 @@ export default function Experiment() {
         setChecked(!checked);
     }
 
+    const selectOptions = [
+        { id: 1, name: '选项1' },
+        { id: 2, name: '选项2' },
+        { id: 3, name: '选项3' },
+        { id: 4, name: '选项4' },
+        { id: 5, name: '选项5' },
+        { id: 6, name: '选项6' },
+        { id: 7, name: '选项7' },
+        { id: 8, name: '选项8' },
+        { id: 9, name: '选项9' },
+        { id: 10, name: '选项10' },
+        { id: 11, name: '选项11' },
+        { id: 12, name: '选项12' },
+        { id: 13, name: '选项13' },
+    ];
+    const [selectValue, setSelectValue] = useState<number[]>([1]);
+    const [mutiSelectValue, setMutiSelectValue] = useState<number[]>([1]);
+
     const { addMsg } = useMsgContext();
     return (
         <div className="p-10">
             <ul>
                 <li>
                     <h3 className="text-xl text-gray-500 my-2">按钮</h3>
-                    <h4 className="text-lg text-gray-500 my-2">size（small、default、large）</h4>
+                    <h4 className="text-lg text-gray-500 my-2">size（xs、sm、md(default)、lg）</h4>
                     <div className="flex items-center space-x-2 my-4">
-                        <WButton size="small">
+                        <WButton size="xs">
+                            <Plus size="16" /> Hello World
+                        </WButton>
+                        <WButton size="sm">
                             <Plus size="16" /> Hello World
                         </WButton>
                         <WButton>
                             <Plus size="16" /> Hello World
                         </WButton>
-                        <WButton size="large">
+                        <WButton size="lg">
                             <Plus size="16" /> Hello World
                         </WButton>
                     </div>
@@ -44,13 +65,22 @@ export default function Experiment() {
                 </li>
                 <li>
                     <h3 className="text-xl text-gray-500 my-1">输入框</h3>
+                    <h4 className="text-lg text-gray-500 my-2">size（xs、sm、md(default)、lg） 
+                        <span className='text-red-300'>参考按钮size</span>
+                    </h4>
                     <div className="w-64 flex items-center space-x-2 my-4">
-                        <WInput placeholder="搜索" />
+                        <WInput placeholder="搜索" childrenPosition='right'>
+                            <Search size="18" color='#aaa'/>
+                        </WInput>
                     </div>
                 </li>
                 <li>
                     <h3 className="text-xl text-gray-500 my-1">开关</h3>
                     <div className="flex items-center space-x-2 my-4">
+                        <WSwitch
+                            checked={checked}
+                            onChange={handleClick}
+                        />
                         <WSwitch
                             checked={checked}
                             onText="打开"
@@ -69,37 +99,22 @@ export default function Experiment() {
                 </li>
                 <li>
                     <h3 className="text-xl text-gray-500 my-1">选择器</h3>
+                    <h4 className="text-lg text-gray-500 my-2">size（xs、sm、md(default)、lg） 
+                        <span className='text-red-300'>参考按钮size</span>
+                    </h4>
                     <h4 className="text-lg text-gray-500 my-2">multi（true、false）</h4>
-
                     <div className="w-64 flex items-center space-x-2 my-4">
                         <WSelect
-                            options={[
-                                { id: 1, name: '选项1' },
-                                { id: 2, name: '选项2' },
-                                { id: 3, name: '选项3' },
-                                { id: 4, name: '选项4' },
-                                { id: 5, name: '选项5' },
-                                { id: 6, name: '选项6' },
-                                { id: 7, name: '选项7' },
-                                { id: 8, name: '选项8' },
-                                { id: 9, name: '选项9' },
-                                { id: 10, name: '选项10' },
-                                { id: 11, name: '选项11' },
-                                { id: 12, name: '选项12' },
-                                { id: 13, name: '选项13' },
-                            ]}
-                            selectedIds={[1]}
+                            options={selectOptions}
+                            selectedIds={mutiSelectValue}
                             multi={true}
+                            onChange={(ids) => setMutiSelectValue(ids as number[])}
                         />
                         <WSelect
-                            options={[
-                                { id: 1, name: '选项1' },
-                                { id: 2, name: '选项2' },
-                                { id: 3, name: '选项3' },
-                                { id: 4, name: '选项4' },
-                            ]}
-                            selectedIds={[1]}
+                            options={selectOptions}
+                            selectedIds={selectValue}
                             multi={false}
+                            onChange={(ids) => setSelectValue(ids as number[])}
                         />
                     </div>
                 </li>
@@ -110,19 +125,19 @@ export default function Experiment() {
                     </h4>
                     <div className="flex items-center space-x-2 my-4">
                         <WButton
-                            handleClick={() => addMsg('Hello World' + ++count, 'success', 3000)}
+                            onClick={() => addMsg('Hello World' + ++count, 'success', 3000)}
                         >
                             消息提示success
                         </WButton>
-                        <WButton handleClick={() => addMsg('Hello World' + ++count, 'info', 3000)}>
+                        <WButton onClick={() => addMsg('Hello World' + ++count, 'info', 3000)}>
                             消息提示info
                         </WButton>
                         <WButton
-                            handleClick={() => addMsg('Hello World' + ++count, 'warning', 3000)}
+                            onClick={() => addMsg('Hello World' + ++count, 'warning', 3000)}
                         >
                             消息提示warning
                         </WButton>
-                        <WButton handleClick={() => addMsg('Hello World' + ++count, 'error', 3000)}>
+                        <WButton onClick={() => addMsg('测试超长消息提示测试超长消息提示测试超长消息提示测试超长消息提示测试超长消息提示测试超长消息提示' + ++count, 'error', 10000)}>
                             消息提示error
                         </WButton>
                     </div>

@@ -124,11 +124,11 @@ export default function CreateNotePage() {
                             placeholder="选择标签"
                             onChange={handleSelect}
                         />
-                        <WButton type="text" handleClick={saveNote}>
+                        <WButton type="text" onClick={saveNote}>
                             <Save size={22} strokeWidth={1.25} />
                         </WButton>
                     </div>
-                    <WButton handleClick={() => void navigate('/note')}>返回列表</WButton>
+                    <WButton onClick={() => void navigate('/note')}>返回列表</WButton>
                 </div>
                 <Note html={html} />
             </div>
