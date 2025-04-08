@@ -1,5 +1,6 @@
 import { WSelect } from "@/components";
 import { useState } from "react";
+import { navbarManager } from "@/utils";
 
 const navbarPositionOption = [{
     id: "left",
@@ -18,11 +19,12 @@ const navbarStateOptions = [{
 }];
 
 export default function SettingLayout() {
-    const [position, setPosition] = useState("left");
-    const [state, setState] = useState("auto");
+    const [position, setPosition] = useState(localStorage.getItem('navbarPosition') ?? "left");
+    const [state, setState] = useState(localStorage.getItem('navbarState') ?? "auto");
 
     const handlePositionChange = (position: string) => {
         setPosition(position);
+        navbarManager.changeNavbarPosition(position as 'left' | 'top');
         // 将设置保存到localStorage
         localStorage.setItem('navbarPosition', position);
     }
