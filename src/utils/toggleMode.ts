@@ -1,6 +1,6 @@
 // 优先级：用户选择的主题模式 > 缓存的主题模式 > 浏览器的深色/浅色模式
 
-export default function toggleMode(mode: 'light' | 'dark' | 'system' | undefined | void) {
+export default function toggleMode(mode?: 'light' | 'dark' | 'system') {
     let currentMode;
 
     // 如果是首次加载页面，则从localStorage中获取用户选择的主题模式
@@ -23,6 +23,5 @@ export default function toggleMode(mode: 'light' | 'dark' | 'system' | undefined
     }
 
     // 在页面加载或更改主题时，最好在``head''中添加内联以避免fouc
-    console.log(currentMode);
     document.documentElement.classList.toggle('dark', currentMode === 'dark');
 }

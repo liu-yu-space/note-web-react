@@ -1,6 +1,6 @@
 import { WSelect } from "@/components";
 import { useState } from "react";
-import toggleMode from "@/utils/mode";
+import { toggleMode } from "@/utils";
 
 const options = [{
     id: "light",
@@ -14,11 +14,11 @@ const options = [{
 }];
 
 export default function SettingTheme() {
-    const [theme, setTheme] = useState<string>("system");
+    const [theme, setTheme] = useState<string>(localStorage.getItem("theme") ?? "system");
 
     const handleThemeChange = (theme: string) => {
         setTheme(theme);
-        toggleMode(theme as 'light' | 'dark' | 'auto' | undefined);
+        toggleMode(theme as 'light' | 'dark' | 'system');
     }
 
     return <div>

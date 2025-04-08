@@ -12,7 +12,7 @@ import Exercises from './pages/exercises/index.tsx';
 
 function App() {
     return (
-        <div className="w-dvw h-dvh flex">
+        <div className="w-dvw h-dvh flex dark:bg-gray-800">
             <Navbar />
             <div className="grow h-full">
                 <Routes>
