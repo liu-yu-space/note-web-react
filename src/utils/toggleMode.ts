@@ -1,6 +1,6 @@
 // 优先级：用户选择的主题模式 > 缓存的主题模式 > 浏览器的深色/浅色模式
 
-export default function toggleMode(mode?: 'light' | 'dark' | 'system') {
+export default function toggleMode(mode: 'light' | 'dark' | 'system'): void {
     let currentMode;
 
     // 如果是首次加载页面，则从localStorage中获取用户选择的主题模式

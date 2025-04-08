@@ -44,6 +44,14 @@ export default function NotePage() {
         setCurrentNoteId(id);
     };
 
+    // 搜索笔记
+    const handleSearch = (value: string) => {
+        console.log('handleSearch', value);
+        void http('/api/note/search' + '?onlyPublic=false&title=' + value).then(res => {
+            setNotes(res as NoteType[]);
+        });
+    };
+
     return (
         <div className="flex w-full h-full justify-center relative overflow-auto">
             <section className="w-[800px] p-8">
@@ -61,8 +69,13 @@ export default function NotePage() {
                     opacity-10 transition-opacity duration-300"
             >
                 <div className="flex items-center p-4 gap-3">
-                    <WInput placeholder="搜索" childrenPosition='right' size='sm'>
-                        <Search size="18" color='#aaa'/>
+                    <WInput
+                        placeholder="搜索"
+                        childrenPosition="right"
+                        size="sm"
+                        onChange={e => handleSearch(e.target.value)}
+                    >
+                        <Search size="18" color="#aaa" />
                     </WInput>
                     <WButton onClick={handleClick}>
                         <Plus size="16" />
