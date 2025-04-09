@@ -1,40 +1,5 @@
 import { createContext } from 'react';
-
-// 定义全局状态类型
-export interface StoreState {
-  message: {
-    msgList: MessageItem[];
-    addMsg: (text: string, type?: MessageType, duration?: number) => void;
-  };
-  // 可以添加其他模块的状态
-  user: {
-    isLoggedIn: boolean;
-    userInfo: null;
-    login: () => void;
-    logout: () => void;
-  };
-  theme: {
-    mode: 'light' | 'dark';
-    toggleTheme: () => void;
-  };
-  layout: {
-    layout: {
-        position: "left" | "top";
-        state: "always" | "auto";
-    };
-    toggleLayout: (type: "position" | "state", value: string) => void;
-  }
-}
-
-// 定义消息类型
-export type MessageType = 'error' | 'success' | 'warning' | 'info';
-
-export interface MessageItem {
-  id: string;
-  text: string;
-  type: MessageType;
-  duration: number;
-}
+import { StoreState } from '@/types';
 
 // 创建默认值
 const defaultStore: StoreState = {

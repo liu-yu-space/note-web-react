@@ -1,6 +1,6 @@
 import { Palette, NotebookText, LayoutDashboard } from "lucide-react";
 import { useState } from "react";
-import SettingNote from "./components/settingNote";
+// import SettingNote from "./components/settingNote";
 import SettingLayout from "./components/settingLayout";
 import SettingTheme from "./components/settingTheme";
 
@@ -47,7 +47,7 @@ export default function SettingsPage() {
             <div className="p-4 bg-gray-100 rounded-md w-full dark:bg-gray-800 dark:text-white">
                 {activeSetting.id === 'layout' && <SettingLayout />}
                 {activeSetting.id === 'theme' && <SettingTheme />}
-                {activeSetting.id === 'note' && <SettingNote />}
+                {/* {activeSetting.id === 'note' && <SettingNote />} */}
             </div>
         </main>
     );
