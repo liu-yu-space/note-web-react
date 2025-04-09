@@ -1,7 +1,10 @@
 import { CircleCheck, CircleX, CircleAlert, Info } from 'lucide-react';
 import ReactDOM from 'react-dom';
-import { useMsgContext } from './createContext';
+// import { useMsgContext } from './createContext';
 import { useState, useEffect } from 'react';
+// 导入新的 store 钩子
+import { useMessage } from '@/store';
+import { MessageItem } from '@/store/createContext';
 
 // 消息组件
 const IconMap = {
@@ -24,15 +27,13 @@ const IconMap = {
 } as const;
 
 function WMsg() {
-    const { msgList } = useMsgContext();
+    const { msgList } = useMessage();
+    
     // 跟踪每条消息的状态
-    interface AnimatedMessage {
-        id: string;
-        text: string;
-        type: 'error' | 'success' | 'warning' | 'info';
-        duration: number;
+    interface AnimatedMessage extends MessageItem {
         isVisible: boolean;
     }
+
     const [animatedMessages, setAnimatedMessages] = useState<AnimatedMessage[]>([]);
 
     // 当 msgList 更新时，添加新消息到动画消息列表

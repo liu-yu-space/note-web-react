@@ -6,13 +6,13 @@ import { WButton, WSwitch, WSelect } from '@/components';
 import { useNavigate } from 'react-router-dom';
 import http from '@/lib/http';
 import type { Tag, FullNote } from '@/types';
-import { useMsgContext } from '@/components/wmsg/createContext';
+import { useMessage } from '@/store';
 import { useParams } from 'react-router-dom';
 
 export default function CreateNotePage() {
     const navigate = useNavigate();
     const { id } = useParams();
-    const { addMsg } = useMsgContext();
+    const { addMsg } = useMessage();
     const [savedNote, setSavedNote] = useState<FullNote | null>(null);
 
     // 获取笔记详情

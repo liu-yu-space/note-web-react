@@ -1,8 +1,5 @@
 import { WSelect } from '@/components';
-import { useState } from 'react';
-import { toggleMode } from '@/utils';
-
-// Ensure toggleMode is properly typed in "@/utils", e.g.:
+import { useTheme } from '@/store';
 
 const options = [
     {
@@ -20,11 +17,10 @@ const options = [
 ];
 
 export default function SettingTheme() {
-    const [theme, setTheme] = useState<string>(localStorage.getItem('theme') ?? 'system');
+    const { toggleTheme, mode } = useTheme();
 
-    const handleThemeChange = (theme: string) => {
-        setTheme(theme);
-        toggleMode(theme as 'light' | 'dark' | 'system');
+    const handleThemeChange = () => {
+        toggleTheme();
     };
 
     return (
@@ -34,9 +30,9 @@ export default function SettingTheme() {
                 <div className="flex flex-col">
                     <WSelect
                         options={options}
-                        selectedIds={[theme]}
+                        selectedIds={[mode]}
                         size="sm"
-                        onChange={ids => handleThemeChange(ids[0])}
+                        onChange={() => handleThemeChange()}
                     />
                 </div>
             </div>

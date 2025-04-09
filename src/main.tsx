@@ -4,19 +4,16 @@ import { BrowserRouter } from 'react-router-dom';
 import './assets/styles/index.css';
 import './assets/styles/md.css';
 import App from './App.tsx';
-import { toggleMode } from './utils';
-import WMsg from './components/wmsg/wmsg.tsx';
-import GlobalMsgProvider from '@/components/wmsg/GlobalMsgProvider.tsx';
-
-toggleMode();
+import { WMsg } from './components';
+import { StoreProvider } from './store';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <GlobalMsgProvider>
+        <StoreProvider>
             <WMsg />
             <BrowserRouter>
                 <App />
             </BrowserRouter>
-        </GlobalMsgProvider>
+        </StoreProvider>
     </StrictMode>
 );

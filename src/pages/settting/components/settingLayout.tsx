@@ -1,6 +1,6 @@
 import { WSelect } from "@/components";
 import { useState } from "react";
-import { navbarManager } from "@/utils";
+import { useLayout } from "@/store";
 
 const navbarPositionOption = [{
     id: "left",
@@ -18,21 +18,26 @@ const navbarStateOptions = [{
     name: "自动隐藏",
 }];
 
-export default function SettingLayout() {
-    const [position, setPosition] = useState(localStorage.getItem('navbarPosition') ?? "left");
-    const [state, setState] = useState(localStorage.getItem('navbarState') ?? "auto");
+interface Layout {
+    position: "left" | "top";
+    state: "always" | "auto";
+}
 
-    const handlePositionChange = (position: string) => {
+export default function SettingLayout() {
+    const cachedLayout = localStorage.getItem('layout');
+    const parsedLayout: Layout | null = cachedLayout ? JSON.parse(cachedLayout) as Layout : null;
+    const [position, setPosition] = useState<"left" | "top">(parsedLayout ? parsedLayout.position : "left");
+    const [state, setState] = useState<"always" | "auto">(parsedLayout ? parsedLayout.state : "auto");
+    const { toggleLayout } = useLayout();
+    
+    const handlePositionChange = (position: Layout["position"]) => {
         setPosition(position);
-        navbarManager.changeNavbarPosition(position as 'left' | 'top');
-        // 将设置保存到localStorage
-        localStorage.setItem('navbarPosition', position);
+        toggleLayout("position", position);
     }
 
-    const handleStateChange = (state: string) => {
+    const handleStateChange = (state: Layout["state"]) => {
         setState(state);
-        // 将设置保存到localStorage
-        localStorage.setItem('navbarState', state);
+        toggleLayout("state", state);
     }
 
     return <div className="flex flex-col w-full gap-2">
@@ -43,7 +48,7 @@ export default function SettingLayout() {
                         options={navbarPositionOption} 
                         selectedIds={[position]} 
                         size="sm"
-                        onChange={(ids) => handlePositionChange(ids[0])}
+                        onChange={(ids) => handlePositionChange(ids[0] as Layout["position"])}
                     />
                 </div>
             </div>
@@ -54,7 +59,7 @@ export default function SettingLayout() {
                         options={navbarStateOptions} 
                         selectedIds={[state]} 
                         size="sm"
-                        onChange={(ids) => handleStateChange(ids[0])}
+                        onChange={(ids) => handleStateChange(ids[0] as Layout["state"])}
                     />
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import { globalMsgManager } from '@/utils';
+import { messageManager } from '@/store';
 
 const LOGIN_ROUTE = '/auth/login'; // 401错误跳转的页面
 
@@ -27,14 +27,14 @@ const http = <T>(url: string, options: HttpOptions = {}): Promise<T> => {
                 case 200:
                 case 201:
                     if (url.includes(LOGIN_ROUTE)) {
-                        globalMsgManager.addMsg('登录成功', 'success');
+                        messageManager.addMsg('登录成功', 'success');
                         return '登录成功';
                     } else {
                         return response.json();
                     }
                 case 401:
                     // 401 鉴权失败
-                    globalMsgManager.addMsg('鉴权失败，请先登录', 'error');
+                    messageManager.addMsg('鉴权失败，请先登录', 'error');
                     throw new Error('HTTP error! Status: 401 鉴权失败');
                 case 403:
                     // 访问权限缺失
@@ -48,7 +48,7 @@ const http = <T>(url: string, options: HttpOptions = {}): Promise<T> => {
         })
         .catch(error => {
             if (typeof error !== 'string') {
-                globalMsgManager.addMsg(navigator.onLine ? '网络错误，请稍后重试' : '网络连接失败，请检查网络设置', 'error');
+                messageManager.addMsg(navigator.onLine ? '网络错误，请稍后重试' : '网络连接失败，请检查网络设置', 'error');
             }
             return Promise.reject(new Error('Fetch error: ' + error));
         });

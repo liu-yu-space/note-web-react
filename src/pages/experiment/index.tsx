@@ -1,7 +1,7 @@
 import { WButton, WInput, WSwitch, WTag, WSelect } from '@/components';
 import { Plus, Search } from 'lucide-react';
 import { useState } from 'react';
-import { useMsgContext } from '@/components/wmsg/createContext';
+import { useMessage } from '@/store';
 
 let count = 0;
 export default function Experiment() {
@@ -30,7 +30,7 @@ export default function Experiment() {
     const [selectValue, setSelectValue] = useState<number[]>([1]);
     const [mutiSelectValue, setMutiSelectValue] = useState<number[]>([1]);
 
-    const { addMsg } = useMsgContext();
+    const { addMsg } = useMessage();
     return (
         <div className="p-10">
             <ul>
@@ -108,13 +108,13 @@ export default function Experiment() {
                             options={selectOptions}
                             selectedIds={mutiSelectValue}
                             multi={true}
-                            onChange={(ids) => setMutiSelectValue(ids as number[])}
+                            onChange={(ids) => setMutiSelectValue(ids)}
                         />
                         <WSelect
                             options={selectOptions}
                             selectedIds={selectValue}
                             multi={false}
-                            onChange={(ids) => setSelectValue(ids as number[])}
+                            onChange={(ids) => setSelectValue(ids)}
                         />
                     </div>
                 </li>

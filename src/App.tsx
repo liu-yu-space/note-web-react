@@ -9,10 +9,14 @@ import CreateNotePage from './pages/note/create.tsx';
 import SettingPage from './pages/settting/index.tsx';
 import ExperimentPage from './pages/experiment/index.tsx';
 import Exercises from './pages/exercises/index.tsx';
+import { useLayout } from './store'; 
 
 function App() {
+    const { layout } = useLayout();
+
+    console.log(layout);
     return (
-        <div className="w-dvw h-dvh flex dark:bg-gray-800">
+        <div className={`w-dvw h-dvh flex ${layout.position === 'top' && 'felx-col'} dark:bg-gray-800`}>
             <Navbar />
             <div className="grow h-full">
                 <Routes>
