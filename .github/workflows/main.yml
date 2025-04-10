@@ -1,4 +1,4 @@
-name: GitHub Actions Demo
+name: GitHub Actions 工作流示例
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
