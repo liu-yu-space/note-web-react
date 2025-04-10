@@ -16,7 +16,7 @@ function App() {
 
     console.log(layout);
     return (
-        <div className={`w-dvw h-dvh flex ${layout.position === 'top' && 'felx-col'} dark:bg-gray-800`}>
+        <div className={`w-dvw h-dvh flex ${layout.position === 'top' && 'flex-col'} dark:bg-gray-800`}>
             <Navbar />
             <div className="grow h-full">
                 <Routes>

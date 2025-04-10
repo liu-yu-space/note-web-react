@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { WEmpty } from '@/components';
 
 interface WSelectOption<T extends string | number> {
     id: T;
@@ -109,10 +110,10 @@ function WSelect<T extends string | number>({
                 <ul
                     ref={listboxRef}
                     role="listbox"
-                    className="absolute w-full max-h-60 overflow-y-auto bg-white border border-gray-300 
+                    className="absolute w-full max-h-60 min-h-40 overflow-y-auto bg-white border border-gray-300 
                     rounded-md shadow-sm z-10 py-1"
                 >
-                    {options.map(option => (
+                    {options.length ? options.map(option => (
                         <li
                             key={option.id}
                             role="option"
@@ -122,7 +123,10 @@ function WSelect<T extends string | number>({
                         >
                             {option.name}
                         </li>
-                    ))}
+                    )) : (<div className='absolute w-full h-full top-0 left-0'>
+                        <WEmpty size="xs" content="暂无数据" />
+                    </div>
+                    )}
                 </ul>
             )}
         </div>

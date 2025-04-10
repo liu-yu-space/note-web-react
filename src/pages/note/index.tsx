@@ -1,4 +1,4 @@
-import { WButton, WInput } from '@/components';
+import { WButton, WInput, WEmpty } from '@/components';
 import Timeline from './components/timeline';
 import { Plus, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -54,7 +54,7 @@ export default function NotePage() {
 
     return (
         <div className="flex w-full h-full justify-center relative overflow-auto">
-            <section className="w-[800px] p-8">
+            <section className="w-[800px] p-8 relative">
                 <h1 className="text-xl mb-4 text-center">{currentNote?.title ?? ''}</h1>
                 <h3 className="text-sm mb-4 text-gray-500 text-center">
                     {currentNote?.createdDate ? formatTime(currentNote.createdDate) : ''}
@@ -62,11 +62,15 @@ export default function NotePage() {
                 <article>
                     <Note html={currentNote?.content ?? ''} />
                 </article>
+                {!currentNote?.content && (<div className='absolute w-full h-full top-0 left-0'>
+                    <WEmpty size='lg' content='暂无笔记，点击右上角创建一个吧'/>
+                </div>
+                )}
             </section>
             <aside
-                className="flex flex-col fixed top-0 z-50 right-0 w-[calc(50%-400px)] min-w-[250px] 
+                className="flex flex-col top-0 z-50 right-0 w-[calc(50%-400px)] min-w-[250px] 
                     max-w-[400px] h-full hover:opacity-100 
-                    opacity-10 transition-opacity duration-300"
+                    opacity-10 transition-opacity duration-300 absolute"
             >
                 <div className="flex items-center p-4 gap-3">
                     <WInput

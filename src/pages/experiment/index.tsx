@@ -1,4 +1,4 @@
-import { WButton, WInput, WSwitch, WTag, WSelect } from '@/components';
+import { WButton, WInput, WSwitch, WTag, WSelect, WEmpty } from '@/components';
 import { Plus, Search } from 'lucide-react';
 import { useState } from 'react';
 import { useMessage } from '@/store';
@@ -32,7 +32,7 @@ export default function Experiment() {
 
     const { addMsg } = useMessage();
     return (
-        <div className="p-10">
+        <div className="p-10 h-full overflow-auto">
             <ul>
                 <li>
                     <h3 className="text-xl text-gray-500 my-2">按钮</h3>
@@ -140,6 +140,15 @@ export default function Experiment() {
                         <WButton onClick={() => addMsg('测试超长消息提示测试超长消息提示测试超长消息提示测试超长消息提示测试超长消息提示测试超长消息提示' + ++count, 'error', 10000)}>
                             消息提示error
                         </WButton>
+                    </div>
+                </li>
+                <li>
+                    <h3 className="text-xl text-gray-500 my-1">暂无数据</h3>
+                    <div className="flex items-center space-x-2 my-4">
+                        <WEmpty size='xs'/>
+                        <WEmpty size='sm'/>
+                        <WEmpty size='md'/>
+                        <WEmpty size='lg'/>
                     </div>
                 </li>
             </ul>
