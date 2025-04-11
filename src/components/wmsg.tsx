@@ -4,24 +4,24 @@ import ReactDOM from 'react-dom';
 import { useState, useEffect } from 'react';
 // 导入新的 store 钩子
 import { useMessage } from '@/store';
-import { MessageItem } from '@/store/createContext';
+import { MessageItem } from '@/types';
 
 // 消息组件
 const IconMap = {
     info: {
-        color: 'bg-blue-600',
+        color: 'bg-blue-500',
         icon: <Info size={16} />,
     },
     success: {
-        color: 'bg-green-600',
+        color: 'bg-green-500',
         icon: <CircleCheck size={16} />,
     },
     warning: {
-        color: 'bg-yellow-600',
+        color: 'bg-yellow-500',
         icon: <CircleAlert size={16} />,
     },
     error: {
-        color: 'bg-red-600',
+        color: 'bg-red-400',
         icon: <CircleX size={16} />,
     },
 } as const;

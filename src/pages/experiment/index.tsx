@@ -7,8 +7,7 @@ let count = 0;
 export default function Experiment() {
     const [checked, setChecked] = useState(false);
 
-    function handleClick(val: boolean) {
-        console.log(val);
+    function handleClick() {
         setChecked(!checked);
     }
 
@@ -144,6 +143,9 @@ export default function Experiment() {
                 </li>
                 <li>
                     <h3 className="text-xl text-gray-500 my-1">暂无数据</h3>
+                    <h4 className="text-lg text-gray-500 my-2">
+                        size（xs、sm、md(default)、lg） 
+                    </h4>
                     <div className="flex items-center space-x-2 my-4">
                         <WEmpty size='xs'/>
                         <WEmpty size='sm'/>

@@ -28,7 +28,7 @@ export default function WInput({placeholder = '', size = "md", childrenPosition,
                 {children}
             </span> : null}
             <input
-                className={`w-full min-w-14 rounded-md outline-none border border-gray-300 px-2 py-1 
+                className={`w-full min-w-14 rounded-md outline-none border border-gray-300 px-2 py-1 bg-white
                     focus:border-primary transition-colors ${childrenPosition === 'right' && 'pr-8'} ${className}
                     ${childrenPosition === 'left' && 'pl-8'}`}
                 type={type}

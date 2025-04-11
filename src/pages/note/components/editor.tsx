@@ -8,10 +8,8 @@ export default function Note() {
 
     function handleInput(event: FormEvent<HTMLDivElement>) {
         const input = event.target as HTMLInputElement;
-        console.log(input.innerHTML);
         if (input?.innerHTML) {
             const output = md.render(input.innerHTML);
-            console.log(output);
             setMdText(output);
         }
     }

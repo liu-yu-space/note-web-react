@@ -20,7 +20,6 @@ export default function CreateNotePage() {
         if (id) {
             void http<FullNote>(`/api/note/${id}`).then(res => {
                 addMsg('笔记查询成功', 'success', 3000);
-                console.log(res);
                 setSavedNote(res);
                 setTitle(res.title);
                 setContent(res.content);
@@ -34,7 +33,6 @@ export default function CreateNotePage() {
     const [tags, setTags] = useState<Tag[]>([]);
     useEffect(() => {
         void http<Tag[]>('/api/note/tag').then(res => {
-            console.log(res);
             setTags(res);
         });
     }, []);
@@ -91,7 +89,6 @@ export default function CreateNotePage() {
             method: data.id ? 'PUT' : 'POST',
         }).then(res => {
             addMsg('笔记保存成功', 'success', 3000);
-            console.log(res);
             setSavedNote(res);
         });
     };

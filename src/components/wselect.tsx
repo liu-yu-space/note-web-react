@@ -88,7 +88,7 @@ function WSelect<T extends string | number>({
     }, []);
 
     return (
-        <div className="w-full relative text-xs">
+        <div className="w-full relative text-xs text-primary-font">
             <input
                 id="select-input"
                 placeholder={placeholder}
@@ -110,7 +110,7 @@ function WSelect<T extends string | number>({
                 <ul
                     ref={listboxRef}
                     role="listbox"
-                    className="absolute w-full max-h-60 min-h-40 overflow-y-auto bg-white border border-gray-300 
+                    className="absolute w-full max-h-60 overflow-y-auto bg-white border border-gray-300 
                     rounded-md shadow-sm z-10 py-1"
                 >
                     {options.length ? options.map(option => (
@@ -123,7 +123,7 @@ function WSelect<T extends string | number>({
                         >
                             {option.name}
                         </li>
-                    )) : (<div className='absolute w-full h-full top-0 left-0'>
+                    )) : (<div className='h-40'>
                         <WEmpty size="xs" content="暂无数据" />
                     </div>
                     )}

@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { MessageItem, MessageType } from '../createContext';
+import { MessageItem, MessageType } from '@/types';
 import { idCreator } from '@/utils/tools';
 
 export function useMessageState() {

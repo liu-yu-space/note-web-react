@@ -40,13 +40,11 @@ export default function NotePage() {
 
     // 点击笔记
     const handleNoteClick = (id: number) => {
-        console.log('handleNoteClick', id);
         setCurrentNoteId(id);
     };
 
     // 搜索笔记
     const handleSearch = (value: string) => {
-        console.log('handleSearch', value);
         void http('/api/note/search' + '?onlyPublic=false&title=' + value).then(res => {
             setNotes(res as NoteType[]);
         });

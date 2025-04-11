@@ -14,7 +14,6 @@ import { useLayout } from './store';
 function App() {
     const { layout } = useLayout();
 
-    console.log(layout);
     return (
         <div className={`w-dvw h-dvh flex ${layout.position === 'top' && 'flex-col'} dark:bg-gray-800`}>
             <Navbar />
