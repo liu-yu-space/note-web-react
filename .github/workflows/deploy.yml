@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} triggered deployment 🚀
 on:
     push:
         tags:
-            - 'v*' # 监听所有以v开头的tag
+            - 'v*'
 
 jobs:
     build-and-deploy:
@@ -26,16 +26,20 @@ jobs:
             - name: Compress build folder
               run: tar -czf dist.tar.gz dist/
 
+            - name: Install SSH key
+              run: |
+                  mkdir -p ~/.ssh/
+                  echo "${{ secrets.ALIYUN_SSH_KEY }}" > ~/.ssh/id_rsa
+                  chmod 600 ~/.ssh/id_rsa
+                  ssh-keyscan -H ${{ secrets.ALIYUN_HOST }} >> ~/.ssh/known_hosts
+
             - name: Deploy to Aliyun
               env:
                   ALIYUN_HOST: ${{ secrets.ALIYUN_HOST }}
                   ALIYUN_USERNAME: ${{ secrets.ALIYUN_USERNAME }}
-                  ALIYUN_PASSWORD: ${{ secrets.ALIYUN_PASSWORD }}
                   DEPLOY_PATH: /srv/note
               run: |
-                  # 使用sshpass进行免密传输
-                  sudo apt-get install -y sshpass
-                  sshpass -p $ALIYUN_PASSWORD scp dist.tar.gz $ALIYUN_USERNAME@$ALIYUN_HOST:$DEPLOY_PATH/
+                  scp dist.tar.gz $ALIYUN_USERNAME@$ALIYUN_HOST:$DEPLOY_PATH/
 
             - name: Trigger deployment
               env:
