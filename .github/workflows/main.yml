@@ -2,17 +2,17 @@ name: GitHub Actions 工作流示例
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "🎉 该任务由${{ github.event_name }}事件自动触发"
-      - run: echo "🐧 任务正在运行在一个被GitHub托管的${{ runner.os }}服务器上!"
-      - run: echo "🔎 分支名： ${{ github.ref }}  仓库： ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "💡  ${{ github.repository }} 仓库已经被克隆到运行器上了."
-      - run: echo "🖥️ 工作流已经准备好在运行器上测试你的代码."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 任务状体： ${{ job.status }}."
+    Explore-GitHub-Actions:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "🎉 该任务由${{ github.event_name }}事件自动触发"
+            - run: echo "🐧 任务正在运行在一个被GitHub托管的${{ runner.os }}服务器上!"
+            - run: echo "🔎 分支名： ${{ github.ref }}  仓库： ${{ github.repository }}."
+            - name: Check out repository code
+              uses: actions/checkout@v4
+            - run: echo "💡  ${{ github.repository }} 仓库已经被克隆到运行器上了."
+            - run: echo "🖥️ 工作流已经准备好在运行器上测试你的代码."
+            - name: List files in the repository
+              run: |
+                  ls ${{ github.workspace }}
+            - run: echo "🍏 任务状态： ${{ job.status }}."

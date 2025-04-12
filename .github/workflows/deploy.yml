@@ -1,0 +1,44 @@
+name: Deploy to Aliyun
+run-name: ${{ github.actor }} triggered deployment 🚀
+on:
+    push:
+        tags:
+            - 'v*' # 监听所有以v开头的tag
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Build project
+              run: npm run build
+
+            - name: Compress build folder
+              run: tar -czf dist.tar.gz dist/
+
+            - name: Deploy to Aliyun
+              env:
+                  ALIYUN_HOST: ${{ secrets.ALIYUN_HOST }}
+                  ALIYUN_USERNAME: ${{ secrets.ALIYUN_USERNAME }}
+                  ALIYUN_PASSWORD: ${{ secrets.ALIYUN_PASSWORD }}
+                  DEPLOY_PATH: /srv/note
+              run: |
+                  # 使用sshpass进行免密传输
+                  sudo apt-get install -y sshpass
+                  sshpass -p $ALIYUN_PASSWORD scp dist.tar.gz $ALIYUN_USERNAME@$ALIYUN_HOST:$DEPLOY_PATH/
+
+            - name: Trigger deployment
+              env:
+                  DEPLOY_HOOK_URL: ${{ secrets.DEPLOY_HOOK_URL }}
+              run: |
+                  curl -X POST $DEPLOY_HOOK_URL
