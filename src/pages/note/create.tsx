@@ -126,7 +126,7 @@ export default function CreateNotePage() {
                             <Save size={22} strokeWidth={1.25} />
                         </WButton>
                     </div>
-                    <WButton onClick={() => void navigate('/note/note')}>返回列表</WButton>
+                    <WButton onClick={() => void navigate('/note')}>返回列表</WButton>
                 </div>
                 <Note html={html} />
             </div>

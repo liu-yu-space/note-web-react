@@ -18,7 +18,7 @@ export default function Home() {
                 password,
             }),
         }).then(() => {
-            void navigate('/note/note');
+            void navigate('/note');
         });
     };
     return (
