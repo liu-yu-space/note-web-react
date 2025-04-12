@@ -40,9 +40,9 @@ jobs:
                   DEPLOY_PATH: /srv/note
               run: |
                   scp dist.tar.gz $ALIYUN_USERNAME@$ALIYUN_HOST:$DEPLOY_PATH/
-
-            - name: Trigger deployment
-              env:
-                  DEPLOY_HOOK_URL: ${{ secrets.DEPLOY_HOOK_URL }}
-              run: |
-                  curl -X POST $DEPLOY_HOOK_URL
+                  # 执行远程命令：删除旧文件夹，解压新文件，重命名
+                  ssh $ALIYUN_USERNAME@$ALIYUN_HOST "cd $DEPLOY_PATH && \
+                    rm -rf www && \
+                    tar -xzf dist.tar.gz && \
+                    mv dist www && \
+                    rm -f dist.tar.gz"
