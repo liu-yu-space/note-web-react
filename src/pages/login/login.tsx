@@ -18,7 +18,7 @@ export default function Home() {
                 password,
             }),
         }).then(() => {
-            void navigate('/');
+            void navigate('/note/note');
         });
     };
     return (
@@ -31,7 +31,12 @@ export default function Home() {
                     </h1>
                     <p className="text-sm flex flex-col items-center mt-5">
                         <div className="flex w-60 mt-4">
-                            <WInput placeholder="用户名" size="md" onChange={e => setName(e.target.value)} childrenPosition='left'>
+                            <WInput
+                                placeholder="用户名"
+                                size="md"
+                                onChange={e => setName(e.target.value)}
+                                childrenPosition="left"
+                            >
                                 <User size={18} className="text-(--color-main)" />
                             </WInput>
                         </div>
@@ -41,7 +46,7 @@ export default function Home() {
                                 size="md"
                                 type="password"
                                 onChange={e => setPassword(e.target.value)}
-                                childrenPosition='left'
+                                childrenPosition="left"
                             >
                                 <Lock size={18} className="text-(--color-main)" />
                             </WInput>

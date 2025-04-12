@@ -1,7 +1,6 @@
-import BookGril from "@/assets/imgs/book-gril1.png";
-import { WButton } from "@/components";
-import { useNavigate } from "react-router-dom";
-
+import BookGril from '@/assets/imgs/book-gril1.png';
+import { WButton } from '@/components';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
     const navigate = useNavigate();
@@ -15,8 +14,16 @@ export default function Home() {
                 <div>
                     其进锐者，其退速。- 孟子
                     <div className="mt-10 flex gap-5">
-                        <WButton onClick={() => handleClick('/note')} size="lg" type="default">创建笔记</WButton>
-                        <WButton onClick={() => handleClick('/exercises')} size="lg" type="default">进入练习</WButton>
+                        <WButton onClick={() => handleClick('/note/note')} size="lg" type="default">
+                            创建笔记
+                        </WButton>
+                        <WButton
+                            onClick={() => handleClick('/note/exercises')}
+                            size="lg"
+                            type="default"
+                        >
+                            进入练习
+                        </WButton>
                     </div>
                 </div>
                 <img src={BookGril} alt="" className="w-3/12" />

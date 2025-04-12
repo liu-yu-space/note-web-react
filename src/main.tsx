@@ -11,7 +11,7 @@ createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <StoreProvider>
             <WMsg />
-            <BrowserRouter>
+            <BrowserRouter basename="/note">
                 <App />
             </BrowserRouter>
         </StoreProvider>

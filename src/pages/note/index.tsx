@@ -60,9 +60,10 @@ export default function NotePage() {
                 <article>
                     <Note html={currentNote?.content ?? ''} />
                 </article>
-                {!currentNote?.content && (<div className='absolute w-full h-full top-0 left-0'>
-                    <WEmpty size='lg' content='暂无笔记，点击右上角创建一个吧'/>
-                </div>
+                {!currentNote?.content && (
+                    <div className="absolute w-full h-full top-0 left-0">
+                        <WEmpty size="lg" content="暂无笔记，点击右上角创建一个吧" />
+                    </div>
                 )}
             </section>
             <aside
