@@ -4,8 +4,10 @@ import logo from '@/assets/imgs/open-book.svg';
 import WButton from '@/components/wbutton';
 import { Link } from 'react-router-dom';
 import { useLayout } from '@/store';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+    const navigate = useNavigate();
     const { layout } = useLayout();
     const location = useLocation();
     
@@ -67,7 +69,7 @@ const Navbar = () => {
                     type="text"
                     onClick={() => {
                         console.log('退出登录');
-                        window.location.href = '/login';
+                        void navigate('/login');
                     }}
                 >
                     <LogOut size={20} />

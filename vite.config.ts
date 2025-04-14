@@ -14,14 +14,14 @@ export default defineConfig({
     server: {
         proxy: {
             // 代理跨域请求
-            '/auth': {
+            // '/auth': {
+            //     target: 'http://localhost:3000', // 目标服务器
+            //     changeOrigin: true, // 是否更改请求源
+            // },
+            '/api': {
                 target: 'http://localhost:3000', // 目标服务器
                 changeOrigin: true, // 是否更改请求源
-            },
-            '/api/note': {
-                target: 'http://localhost:3000', // 目标服务器
-                changeOrigin: true, // 是否更改请求源
-                rewrite: path => path.replace(/^\/api\/note/, '/note'), // 正确的函数格式
+                rewrite: path => path.replace(/^\/api/, '/'), // 正确的函数格式
             },
         },
     },

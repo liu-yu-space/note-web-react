@@ -11,7 +11,7 @@ export default function Home() {
     const [password, setPassword] = useState('');
 
     const handleClick = () => {
-        void http('/auth/login', {
+        void http('/api/auth/login', {
             method: 'POST',
             body: JSON.stringify({
                 name,
