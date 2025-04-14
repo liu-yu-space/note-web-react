@@ -1,25 +1,47 @@
 import { useState, useCallback } from 'react';
+import http from '@/lib/http';
+interface UserInfo {
+    name: string;
+    password: string;
+}
 
 export function useUserState() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userInfo, setUserInfo] = useState<{ name: string } | null>(null);
 
-  const login = useCallback(() => {
-    // 实现登录逻辑
-    // const response = await api.login(credentials);
-    // setUserInfo(response.data.user);
-    setIsLoggedIn(true);
-  }, []);
+    const login = useCallback(async (userInfo: UserInfo) => {
+        const res = await http<{ status: number }>('/api/auth/login', {
+            method: 'POST',
+            body: JSON.stringify(userInfo),
+        });
+        if (res.status === 200) {
+            setUserInfo({
+                name: userInfo.name,
+            });
+            setIsLoggedIn(true);
+            return true;
+        } else {
+            return new Error('登录失败');
+        }
+    }, []);
 
-  const logout = useCallback(() => {
-    setIsLoggedIn(false);
-    setUserInfo(null);
-  }, []);
+    const logout = useCallback(async () => {
+        const res = await http<{ status: number }>('/api/auth/logout', {
+            method: 'POST',
+        });
+        if (res.status === 200) {
+            setIsLoggedIn(false);
+            setUserInfo(null);
+            return true;
+        } else {
+            return new Error('退出失败');
+        }
+    }, []);
 
-  return {
-    isLoggedIn,
-    userInfo,
-    login,
-    logout
-  };
+    return {
+        isLoggedIn,
+        userInfo,
+        login,
+        logout,
+    };
 }

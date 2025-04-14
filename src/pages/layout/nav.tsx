@@ -5,18 +5,23 @@ import WButton from '@/components/wbutton';
 import { Link } from 'react-router-dom';
 import { useLayout } from '@/store';
 import { useNavigate } from 'react-router-dom';
+import { useUserState } from '@/store/modules/user.ts';
+import { useMessage } from '@/store';
 
 const Navbar = () => {
     const navigate = useNavigate();
     const { layout } = useLayout();
     const location = useLocation();
-    
+    const { logout } = useUserState();
+    const { addMsg } = useMessage();
+
     // 判断是否是登录页面或 404 页面
     if (['/login', '/404'].includes(location.pathname)) {
         return null; // 如果是登录或404页面，不渲染导航栏
     }
 
-    let className = 'flex items-center justify-between bg-gray-100 shrink-0 z-50 transition-all duration-300 ease-in-out shadow-xl opacity-100';
+    let className =
+        'flex items-center justify-between bg-gray-100 shrink-0 z-50 transition-all duration-300 ease-in-out shadow-xl opacity-100';
 
     // 导航栏位置
     if (layout.position === 'left') {
@@ -29,12 +34,33 @@ const Navbar = () => {
     if (layout.state === 'always') {
         className += '';
     } else if (layout.state === 'auto') {
-        className += ' fixed ' + (layout.position === 'left' ? '-translate-x-[calc(100%)] hover:-translate-x-0' : '-translate-y-[calc(100%-0px)] hover:-translate-y-0');
+        className +=
+            ' fixed ' +
+            (layout.position === 'left'
+                ? '-translate-x-[calc(100%)] hover:-translate-x-0'
+                : '-translate-y-[calc(100%-0px)] hover:-translate-y-0');
     }
+
+    // 退出登录
+    const handleLogout = () => {
+        void logout().then(res => {
+            if (res) {
+                void navigate('/login');
+            } else {
+                addMsg('退出失败', 'error');
+            }
+        });
+    };
+
     return (
         <nav className={className}>
-            {layout.state === 'auto' && <div className={`absolute ${layout.position === 'left' ? "-right-4 h-full w-4" 
-                : "-bottom-4 w-full h-4"} bg-transparent`}></div>}
+            {layout.state === 'auto' && (
+                <div
+                    className={`absolute ${
+                        layout.position === 'left' ? '-right-4 h-full w-4' : '-bottom-4 w-full h-4'
+                    } bg-transparent`}
+                ></div>
+            )}
             <div className={`flex ${layout.position === 'left' ? 'flex-col' : ''} gap-4`}>
                 <WButton type="text">
                     <Link to="/">
@@ -65,13 +91,7 @@ const Navbar = () => {
                         <Info size={20} />
                     </Link>
                 </WButton>
-                <WButton
-                    type="text"
-                    onClick={() => {
-                        console.log('退出登录');
-                        void navigate('/login');
-                    }}
-                >
+                <WButton type="text" onClick={handleLogout}>
                     <LogOut size={20} />
                 </WButton>
             </div>

@@ -3,24 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import { Lock, User } from 'lucide-react';
 import LoginPerson from '@/assets/imgs/login-person.jpg';
 import { WButton, WInput } from '../../components/index.tsx';
-import http from '@/lib/http.ts';
+import { useUserState } from '@/store/modules/user.ts';
+import { useMessage } from '@/store';
 
 export default function Home() {
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    const { login } = useUserState();
+    const { addMsg } = useMessage();
 
     const handleClick = () => {
-        void http('/api/auth/login', {
-            method: 'POST',
-            body: JSON.stringify({
-                name,
-                password,
-            }),
-        }).then(() => {
-            void navigate('/note');
+        void login({ name, password }).then(res => {
+            if (res) {
+                addMsg('登录成功', 'success');
+                void navigate('/note');
+            } else {
+                addMsg('登录失败', 'error');
+            }
         });
     };
+
     return (
         <section className="h-dvh flex justify-center items-center bg-[url(@/assets/imgs/login-bg.webp)] bg-cover bg-center">
             <div className="bg-white p-8 rounded-lg shadow-xl h-100 w-180 flex">
