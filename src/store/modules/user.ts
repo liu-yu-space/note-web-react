@@ -1,15 +1,12 @@
 import { useState, useCallback } from 'react';
 import http from '@/lib/http';
-interface UserInfo {
-    name: string;
-    password: string;
-}
+import type { LoginInfo } from '@/types';
 
 export function useUserState() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userInfo, setUserInfo] = useState<{ name: string } | null>(null);
 
-    const login = useCallback(async (userInfo: UserInfo) => {
+    const login = useCallback(async (userInfo: LoginInfo) => {
         try {
             const res = await http<{ status: number }>('/api/auth/login', {
                 method: 'POST',

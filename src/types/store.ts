@@ -10,6 +10,15 @@ export interface MessageItem {
 }
 
 // 定义全局状态类型
+export interface UserInfo {
+  name: string;
+}
+
+export interface LoginInfo {
+  name: string;
+  password: string;
+}
+
 export interface StoreState {
   message: {
     msgList: MessageItem[];
@@ -18,8 +27,8 @@ export interface StoreState {
   // 可以添加其他模块的状态
   user: {
     isLoggedIn: boolean;
-    userInfo: null;
-    login: () => void;
+    userInfo: UserInfo | null;
+    login: (loginInfo: LoginInfo) => void;
     logout: () => void;
   };
   theme: {

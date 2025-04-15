@@ -12,6 +12,7 @@ import Exercises from './pages/exercises/index.tsx';
 import { useLayout } from './store';
 import { useVersion } from './hooks/useVersion';
 import { useEffect } from 'react';
+import { consoleImg  } from './utils/tools.ts';
 
 function App() {
     const { layout } = useLayout();
@@ -19,7 +20,10 @@ function App() {
     const version = useVersion();
     useEffect(() => {
         if(version) {
-            console.log(version);
+            const versionText = version.split('\n')[0].split(': ')[1].trim();
+            consoleImg("https://img.shields.io/badge/version-" + versionText + "-blue");
+            const dateText = version.split('\n')[1].split(': ')[1].trim();
+            consoleImg("https://img.shields.io/badge/deployed-" + dateText.replace(/-/g, '.') + "-green");
         }
     }, [version]);
 
