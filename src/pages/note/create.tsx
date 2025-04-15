@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Editor from './components/editor_';
 import Note from './components/note';
 import { Save } from 'lucide-react';
@@ -44,11 +44,11 @@ export default function CreateNotePage() {
     const [content, setContent] = useState('');
     const [html, setHtml] = useState('');
 
-    const updateText = function (text: string) {
+    const updateText = useCallback(function (text: string) {
         const trimmedText = text.trim();
         setContent(trimmedText);
         setHtml(trimmedText);
-    };
+    }, []);
 
     // 公开/私密
     const [isPublic, setIsPublic] = useState(false);

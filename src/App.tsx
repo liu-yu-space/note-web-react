@@ -11,12 +11,17 @@ import ExperimentPage from './pages/experiment/index.tsx';
 import Exercises from './pages/exercises/index.tsx';
 import { useLayout } from './store';
 import { useVersion } from './hooks/useVersion';
+import { useEffect } from 'react';
 
 function App() {
     const { layout } = useLayout();
 
     const version = useVersion();
-    console.log(version);
+    useEffect(() => {
+        if(version) {
+            console.log(version);
+        }
+    }, [version]);
 
     return (
         <div
