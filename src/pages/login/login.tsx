@@ -32,7 +32,7 @@ export default function Home() {
                     <h1 className="text-xl display-flex justify-center align-middle">
                         学而时习之,不亦说乎！
                     </h1>
-                    <p className="text-sm flex flex-col items-center mt-5">
+                    <div className="text-sm flex flex-col items-center mt-5">
                         <div className="flex w-60 mt-4">
                             <WInput
                                 placeholder="用户名"
@@ -55,7 +55,7 @@ export default function Home() {
                             </WInput>
                         </div>
                         <WButton onClick={handleClick}> 点击登录 </WButton>
-                    </p>
+                    </div>
                 </div>
             </div>
         </section>

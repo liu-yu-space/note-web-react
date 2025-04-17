@@ -38,7 +38,7 @@ export default function Timeline({
                                     <WTag key={idCreator()} text={tag.name} hDegree={i * 45}></WTag>
                                 ))}
                             </div>
-                            <p className="text-gray-400 text-xs">{item.createdDate}</p>
+                            <div className="text-gray-400 text-xs">{item.createdDate}</div>
                         </div>
                         <div className="absolute right-0 top-[calc(50%-10px)] opacity-0 group-hover:opacity-100">
                             <WButton type="text" onClick={onEdit && (() => onEdit(item.id))}>

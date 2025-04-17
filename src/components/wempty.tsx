@@ -1,6 +1,12 @@
 import { PackageOpen } from 'lucide-react';
 
-export default function WEmpty({size = 'sm', content = '暂无数据'}: {size: "xs" | "sm" | "md" | "lg", content?: string}) {
+export default function WEmpty({
+    size = 'sm',
+    content = '暂无数据',
+}: {
+    size: 'xs' | 'sm' | 'md' | 'lg';
+    content?: string;
+}) {
     const sizeClass = {
         xs: 40,
         sm: 50,
@@ -15,8 +21,8 @@ export default function WEmpty({size = 'sm', content = '暂无数据'}: {size: "
     }[size];
     return (
         <div className={`w-full h-full flex flex-col items-center justify-center text-gray-300`}>
-            <PackageOpen size={sizeClass} strokeWidth={1}/>
-            <p className={`${textClass} select-none`}>{content}</p>
+            <PackageOpen size={sizeClass} strokeWidth={1} />
+            <div className={`${textClass} select-none`}>{content}</div>
         </div>
     );
-};
+}
