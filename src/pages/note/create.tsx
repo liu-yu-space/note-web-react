@@ -45,7 +45,7 @@ export default function CreateNotePage() {
     const [html, setHtml] = useState('');
 
     const updateText = useCallback(function (text: string) {
-        const trimmedText = text.trim();
+        const trimmedText = text;
         setContent(trimmedText);
         setHtml(trimmedText);
     }, []);
@@ -99,7 +99,7 @@ export default function CreateNotePage() {
                     type="text"
                     placeholder="标题内容"
                     value={title}
-                    onChange={e => setTitle(e.target.value.trim())}
+                    onChange={e => setTitle(e.target.value)}
                     className="w-full mb-4 p-4 border-gray-300 outline-none bg-gray-50 focus:bg-gray-100 transition-all duration-300"
                 />
                 <Editor onTextUpdate={updateText} text={content} />

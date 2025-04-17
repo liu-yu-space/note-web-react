@@ -9,8 +9,8 @@ export default function Home() {
     };
 
     return (
-        <main className="overflow-auto">
-            <section className=" flex justify-center items-center gap-10 p-10 min-h-[calc(100vh-100px)]">
+        <main className="h-full overflow-auto">
+            <section className="h-full flex justify-center items-center gap-10 p-10 min-h-[calc(100vh-100px)]">
                 <div>
                     其进锐者，其退速。- 孟子
                     <div className="mt-10 flex gap-5">

@@ -12,18 +12,21 @@ import Exercises from './pages/exercises/index.tsx';
 import { useLayout } from './store';
 import { useVersion } from './hooks/useVersion';
 import { useEffect } from 'react';
-import { consoleImg  } from './utils/tools.ts';
+import { consoleImg } from './utils/tools.ts';
+import NotFound from './pages/notFound/index.tsx';
 
 function App() {
     const { layout } = useLayout();
 
     const version = useVersion();
     useEffect(() => {
-        if(version) {
+        if (version) {
             const versionText = version.split('\n')[0].split(': ')[1].trim();
-            consoleImg("https://img.shields.io/badge/version-" + versionText + "-blue");
+            consoleImg('https://img.shields.io/badge/version-' + versionText + '-blue');
             const dateText = version.split('\n')[1].split(': ')[1].trim();
-            consoleImg("https://img.shields.io/badge/deployed-" + dateText.replace(/-/g, '.') + "-green");
+            consoleImg(
+                'https://img.shields.io/badge/deployed-' + dateText.replace(/-/g, '.') + '-green'
+            );
         }
     }, [version]);
 
@@ -47,6 +50,7 @@ function App() {
                     <Route path="/demo" element={<Demo />} />
                     <Route path="/aboutme" element={<Aboutme />} />
                     <Route path="/setting" element={<SettingPage />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </div>
         </div>

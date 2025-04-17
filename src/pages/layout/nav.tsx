@@ -1,9 +1,9 @@
-import { Info, Settings, LogOut } from 'lucide-react';
+import { Info, Settings, LogOut, LogIn } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import logo from '@/assets/imgs/open-book.svg';
 import WButton from '@/components/wbutton';
 import { Link } from 'react-router-dom';
-import { useLayout } from '@/store';
+import { useLayout, useUser } from '@/store';
 import { useNavigate } from 'react-router-dom';
 import { useUserState } from '@/store/modules/user.ts';
 import { useMessage } from '@/store';
@@ -11,10 +11,12 @@ import { useMessage } from '@/store';
 const Navbar = () => {
     const navigate = useNavigate();
     const { layout } = useLayout();
+    const { userInfo } = useUser();
     const location = useLocation();
     const { logout } = useUserState();
     const { addMsg } = useMessage();
 
+    console.log(userInfo);
     // 判断是否是登录页面或 404 页面
     if (['/login', '/404'].includes(location.pathname)) {
         return null; // 如果是登录或404页面，不渲染导航栏
@@ -92,7 +94,7 @@ const Navbar = () => {
                     </Link>
                 </WButton>
                 <WButton type="text" onClick={handleLogout}>
-                    <LogOut size={20} />
+                    {userInfo ? <LogOut size={20} /> : <LogIn size={20} />}
                 </WButton>
             </div>
         </nav>

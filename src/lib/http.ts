@@ -26,16 +26,17 @@ const http = <T>(url: string, options: HttpOptions = {}): Promise<T> => {
             switch (response.status) {
                 case 200:
                 case 201:
-                    if (url.includes(LOGIN_ROUTE)) {
-                        messageManager.addMsg('登录成功', 'success');
-                        return '登录成功';
-                    } else {
-                        return response.json();
-                    }
+                    return response.json();
                 case 401:
                     // 401 鉴权失败
-                    messageManager.addMsg('鉴权失败，请先登录', 'error');
-                    throw new Error('HTTP error! Status: 401 鉴权失败');
+                    if (location.pathname !== LOGIN_ROUTE) {
+                        // 如果当前路由不是登录页，则跳转到登录页
+                        window.location.href = LOGIN_ROUTE;
+                        messageManager.addMsg('鉴权失败，请先登录', 'error');
+                        break;
+                    } else {
+                        throw new Error('HTTP error! Status: 401 鉴权失败');
+                    }
                 case 403:
                     // 访问权限缺失
                     throw new Error('HTTP error! Status: 403 无访问权限');
@@ -48,7 +49,10 @@ const http = <T>(url: string, options: HttpOptions = {}): Promise<T> => {
         })
         .catch(error => {
             if (typeof error !== 'string') {
-                messageManager.addMsg(navigator.onLine ? '网络错误，请稍后重试' : '网络连接失败，请检查网络设置', 'error');
+                messageManager.addMsg(
+                    navigator.onLine ? '网络错误，请稍后重试' : '网络连接失败，请检查网络设置',
+                    'error'
+                );
             }
             return Promise.reject(new Error('Fetch error: ' + error));
         });

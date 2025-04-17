@@ -33,28 +33,35 @@ export default function Home() {
                         学而时习之,不亦说乎！
                     </h1>
                     <div className="text-sm flex flex-col items-center mt-5">
-                        <div className="flex w-60 mt-4">
-                            <WInput
-                                placeholder="用户名"
-                                size="md"
-                                onChange={e => setName(e.target.value)}
-                                childrenPosition="left"
-                            >
-                                <User size={18} className="text-(--color-main)" />
-                            </WInput>
-                        </div>
-                        <div className="flex w-60 mt-4 mb-10 ">
-                            <WInput
-                                placeholder="密码"
-                                size="md"
-                                type="password"
-                                onChange={e => setPassword(e.target.value)}
-                                childrenPosition="left"
-                            >
-                                <Lock size={18} className="text-(--color-main)" />
-                            </WInput>
-                        </div>
-                        <WButton onClick={handleClick}> 点击登录 </WButton>
+                        <form
+                            className="flex flex-col items-center"
+                            onSubmit={e => {
+                                e.preventDefault();
+                            }}
+                        >
+                            <div className="flex w-60 mt-4">
+                                <WInput
+                                    placeholder="用户名"
+                                    size="md"
+                                    onChange={e => setName(e.target.value)}
+                                    childrenPosition="left"
+                                >
+                                    <User size={18} />
+                                </WInput>
+                            </div>
+                            <div className="flex w-60 mt-4 mb-10 ">
+                                <WInput
+                                    placeholder="密码"
+                                    size="md"
+                                    type="password"
+                                    onChange={e => setPassword(e.target.value)}
+                                    childrenPosition="left"
+                                >
+                                    <Lock size={18} />
+                                </WInput>
+                            </div>
+                            <WButton onClick={handleClick}> 点击登录 </WButton>
+                        </form>
                     </div>
                 </div>
             </div>

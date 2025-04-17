@@ -17,7 +17,7 @@ export function useUserState() {
                     name: userInfo.name,
                 });
                 setIsLoggedIn(true);
-                return { success: true };;
+                return { success: true };
             } else {
                 return { success: false, message: '登录失败' };
             }
