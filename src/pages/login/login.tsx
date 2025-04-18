@@ -1,28 +1,69 @@
-import { useState } from 'react';
+import { useState, useCallback, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, User } from 'lucide-react';
 import LoginPerson from '@/assets/imgs/login-person.jpg';
 import { WButton, WInput } from '../../components/index.tsx';
-import { useUserState } from '@/store/modules/user.ts';
+import { useUser } from '@/store';
 import { useMessage } from '@/store';
+
+const UsernameInput = memo(
+    ({ onChange }: { onChange: React.ChangeEventHandler<HTMLInputElement> }) => {
+        return (
+            <div className="flex w-60 mt-4">
+                <WInput placeholder="用户名" size="md" onChange={onChange} childrenPosition="left">
+                    <User size={18} />
+                </WInput>
+            </div>
+        );
+    }
+);
+
+const PasswordInput = memo(
+    ({ onChange }: { onChange: React.ChangeEventHandler<HTMLInputElement> }) => {
+        return (
+            <div className="flex w-60 mt-4 mb-10 ">
+                <WInput
+                    placeholder="密码"
+                    size="md"
+                    type="password"
+                    onChange={onChange}
+                    childrenPosition="left"
+                >
+                    <Lock size={18} />
+                </WInput>
+            </div>
+        );
+    }
+);
 
 export default function Home() {
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
-    const { login } = useUserState();
+    const { login } = useUser();
     const { addMsg } = useMessage();
 
-    const handleClick = () => {
-        void login({ name, password }).then(res => {
-            if (res) {
-                addMsg('登录成功', 'success');
-                void navigate('/note');
-            } else {
-                addMsg('登录失败', 'error');
-            }
-        });
+    // 登录
+    const handleClick = async () => {
+        if (!name || !password) {
+            addMsg('请输入用户名和密码', 'error');
+            return;
+        }
+        const res = await login({ name, password });
+        if (res.success) {
+            void navigate('/note');
+        } else {
+            addMsg('登录失败，用户名或密码错误', 'error');
+        }
     };
+
+    const handleUsernameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value);
+    }, []);
+
+    const handlePasswordChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value);
+    }, []);
 
     return (
         <section className="h-dvh flex justify-center items-center bg-[url(@/assets/imgs/login-bg.webp)] bg-cover bg-center">
@@ -39,28 +80,24 @@ export default function Home() {
                                 e.preventDefault();
                             }}
                         >
-                            <div className="flex w-60 mt-4">
-                                <WInput
-                                    placeholder="用户名"
-                                    size="md"
-                                    onChange={e => setName(e.target.value)}
-                                    childrenPosition="left"
+                            <UsernameInput onChange={handleUsernameChange} />
+                            <PasswordInput onChange={handlePasswordChange} />
+                            <div className="flex gap-4">
+                                <WButton
+                                    onClick={() => {
+                                        void handleClick();
+                                    }}
                                 >
-                                    <User size={18} />
-                                </WInput>
-                            </div>
-                            <div className="flex w-60 mt-4 mb-10 ">
-                                <WInput
-                                    placeholder="密码"
-                                    size="md"
-                                    type="password"
-                                    onChange={e => setPassword(e.target.value)}
-                                    childrenPosition="left"
+                                    点击登录
+                                </WButton>
+                                <WButton
+                                    onClick={() => {
+                                        void navigate('/note');
+                                    }}
                                 >
-                                    <Lock size={18} />
-                                </WInput>
+                                    直接进入主页
+                                </WButton>
                             </div>
-                            <WButton onClick={handleClick}> 点击登录 </WButton>
                         </form>
                     </div>
                 </div>

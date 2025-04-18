@@ -1,6 +1,6 @@
 import { messageManager } from '@/store';
 
-const LOGIN_ROUTE = '/auth/login'; // 401错误跳转的页面
+const LOGIN_ROUTE = '/note/login'; // 401错误跳转的页面
 
 interface HttpOptions {
     method?: string;
@@ -26,17 +26,19 @@ const http = <T>(url: string, options: HttpOptions = {}): Promise<T> => {
             switch (response.status) {
                 case 200:
                 case 201:
-                    return response.json();
-                case 401:
-                    // 401 鉴权失败
-                    if (location.pathname !== LOGIN_ROUTE) {
-                        // 如果当前路由不是登录页，则跳转到登录页
-                        window.location.href = LOGIN_ROUTE;
-                        messageManager.addMsg('鉴权失败，请先登录', 'error');
-                        break;
-                    } else {
-                        throw new Error('HTTP error! Status: 401 鉴权失败');
+                    if (response.headers.get('Content-Type')?.includes('application/json')) {
+                        return response.json();
                     }
+                    return response.text();
+                case 401:
+                    // 401 鉴权失败, 跳转到登录页面
+                    if (!location.pathname.includes(LOGIN_ROUTE)) {
+                        messageManager.addMsg('登录已过期，请重新登录', 'error');
+                        setTimeout(() => {
+                            window.location.href = LOGIN_ROUTE;
+                        }, 2000);
+                    }
+                    throw new Error('HTTP error! Status: 401 鉴权失败');
                 case 403:
                     // 访问权限缺失
                     throw new Error('HTTP error! Status: 403 无访问权限');
@@ -49,10 +51,10 @@ const http = <T>(url: string, options: HttpOptions = {}): Promise<T> => {
         })
         .catch(error => {
             if (typeof error !== 'string') {
-                messageManager.addMsg(
-                    navigator.onLine ? '网络错误，请稍后重试' : '网络连接失败，请检查网络设置',
-                    'error'
-                );
+                if (!navigator.onLine) {
+                    // 网络错误
+                    messageManager.addMsg('您处于离线状态，请检查网络设置', 'error');
+                }
             }
             return Promise.reject(new Error('Fetch error: ' + error));
         });

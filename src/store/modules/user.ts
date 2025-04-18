@@ -7,24 +7,22 @@ export function useUserState() {
     const [userInfo, setUserInfo] = useState<{ name: string } | null>(null);
 
     const login = useCallback(async (userInfo: LoginInfo) => {
+        let res: { success: boolean } = { success: false };
         try {
-            const res = await http<{ status: number }>('/api/auth/login', {
+            res = await http<{ success: boolean }>('/api/auth/login', {
                 method: 'POST',
                 body: JSON.stringify(userInfo),
             });
-            if (res.status === 200) {
+            if (res.success) {
                 setUserInfo({
                     name: userInfo.name,
                 });
                 setIsLoggedIn(true);
-                return { success: true };
-            } else {
-                return { success: false, message: '登录失败' };
             }
         } catch (error) {
             console.error('Login error:', error);
-            return { success: false, message: '网络错误' };
         }
+        return Promise.resolve(res);
     }, []);
 
     const logout = useCallback(async () => {

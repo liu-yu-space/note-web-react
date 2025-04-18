@@ -11,12 +11,11 @@ import { useMessage } from '@/store';
 const Navbar = () => {
     const navigate = useNavigate();
     const { layout } = useLayout();
-    const { userInfo } = useUser();
+    const { isLoggedIn } = useUser();
     const location = useLocation();
     const { logout } = useUserState();
     const { addMsg } = useMessage();
 
-    console.log(userInfo);
     // 判断是否是登录页面或 404 页面
     if (['/login', '/404'].includes(location.pathname)) {
         return null; // 如果是登录或404页面，不渲染导航栏
@@ -94,7 +93,7 @@ const Navbar = () => {
                     </Link>
                 </WButton>
                 <WButton type="text" onClick={handleLogout}>
-                    {userInfo ? <LogOut size={20} /> : <LogIn size={20} />}
+                    {isLoggedIn ? <LogOut size={20} /> : <LogIn size={20} />}
                 </WButton>
             </div>
         </nav>

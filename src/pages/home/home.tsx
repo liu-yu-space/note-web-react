@@ -15,7 +15,7 @@ export default function Home() {
                     其进锐者，其退速。- 孟子
                     <div className="mt-10 flex gap-5">
                         <WButton onClick={() => handleClick('/note')} size="lg" type="default">
-                            创建笔记
+                            查看笔记
                         </WButton>
                         <WButton onClick={() => handleClick('/exercises')} size="lg" type="default">
                             进入练习

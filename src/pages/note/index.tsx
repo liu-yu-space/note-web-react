@@ -7,8 +7,10 @@ import type { Note as NoteType, FullNote } from '@/types';
 import http from '@/lib/http';
 import Note from './components/note';
 import { formatTime } from '@/utils';
+import { useUser } from '@/store';
 
 export default function NotePage() {
+    const { isLoggedIn } = useUser();
     const navigate = useNavigate();
     const handleClick = () => {
         void navigate('/note/create');
@@ -69,7 +71,7 @@ export default function NotePage() {
             <aside
                 className="flex flex-col top-0 z-50 right-0 w-[calc(50%-400px)] min-w-[250px] 
                     max-w-[400px] h-full hover:opacity-100 
-                    opacity-10 transition-opacity duration-300 absolute"
+                    opacity-100 transition-opacity duration-300 absolute"
             >
                 <div className="flex items-center p-4 gap-3">
                     <WInput
@@ -80,10 +82,12 @@ export default function NotePage() {
                     >
                         <Search size="18" color="#aaa" />
                     </WInput>
-                    <WButton onClick={handleClick}>
-                        <Plus size="16" />
-                        新笔记
-                    </WButton>
+                    {isLoggedIn && (
+                        <WButton onClick={handleClick}>
+                            <Plus size="16" />
+                            新笔记
+                        </WButton>
+                    )}
                 </div>
                 <Timeline onEdit={handleEdit} onClick={handleNoteClick} notes={notes} />
             </aside>
