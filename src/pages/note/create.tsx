@@ -42,12 +42,12 @@ export default function CreateNotePage() {
 
     // 内容
     const [content, setContent] = useState('');
-    const [html, setHtml] = useState('');
+    // const [html, setHtml] = useState('');
 
     const updateText = useCallback(function (text: string) {
         const trimmedText = text;
         setContent(trimmedText);
-        setHtml(trimmedText);
+        // setHtml(trimmedText);
     }, []);
 
     // 公开/私密
@@ -148,7 +148,7 @@ export default function CreateNotePage() {
                     </div>
                     <WButton onClick={() => void navigate('/note')}>返回列表</WButton>
                 </div>
-                <Note html={html} />
+                <Note html={content} />
             </div>
         </div>
     );
