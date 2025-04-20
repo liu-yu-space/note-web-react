@@ -64,22 +64,20 @@ export default function Experiment() {
                 </li>
                 <li>
                     <h3 className="text-xl text-gray-500 my-1">输入框</h3>
-                    <h4 className="text-lg text-gray-500 my-2">size（xs、sm、md(default)、lg） 
-                        <span className='text-red-300'>参考按钮size</span>
+                    <h4 className="text-lg text-gray-500 my-2">
+                        size（xs、sm、md(default)、lg）
+                        <span className="text-red-300">参考按钮size</span>
                     </h4>
                     <div className="w-64 flex items-center space-x-2 my-4">
-                        <WInput placeholder="搜索" childrenPosition='right'>
-                            <Search size="18" color='#aaa'/>
+                        <WInput placeholder="搜索" childrenPosition="right">
+                            <Search size="18" color="#aaa" />
                         </WInput>
                     </div>
                 </li>
                 <li>
                     <h3 className="text-xl text-gray-500 my-1">开关</h3>
                     <div className="flex items-center space-x-2 my-4">
-                        <WSwitch
-                            checked={checked}
-                            onChange={handleClick}
-                        />
+                        <WSwitch checked={checked} onChange={handleClick} />
                         <WSwitch
                             checked={checked}
                             onText="打开"
@@ -98,22 +96,24 @@ export default function Experiment() {
                 </li>
                 <li>
                     <h3 className="text-xl text-gray-500 my-1">选择器</h3>
-                    <h4 className="text-lg text-gray-500 my-2">size（xs、sm、md(default)、lg） 
-                        <span className='text-red-300'>参考按钮size</span>
+                    <h4 className="text-lg text-gray-500 my-2">
+                        size（xs、sm、md(default)、lg）
+                        <span className="text-red-300">参考按钮size</span>
                     </h4>
                     <h4 className="text-lg text-gray-500 my-2">multi（true、false）</h4>
-                    <div className="w-64 flex items-center space-x-2 my-4">
+                    <div className="w-96 flex items-center space-x-2 my-4">
                         <WSelect
                             options={selectOptions}
                             selectedIds={mutiSelectValue}
                             multi={true}
-                            onChange={(ids) => setMutiSelectValue(ids)}
+                            canCreate={true}
+                            onChange={ids => setMutiSelectValue(ids)}
                         />
                         <WSelect
                             options={selectOptions}
                             selectedIds={selectValue}
                             multi={false}
-                            onChange={(ids) => setSelectValue(ids)}
+                            onChange={ids => setSelectValue(ids)}
                         />
                     </div>
                 </li>
@@ -123,34 +123,37 @@ export default function Experiment() {
                         type（success、info、warning、error）
                     </h4>
                     <div className="flex items-center space-x-2 my-4">
-                        <WButton
-                            onClick={() => addMsg('Hello World' + ++count, 'success', 3000)}
-                        >
+                        <WButton onClick={() => addMsg('Hello World' + ++count, 'success', 3000)}>
                             消息提示success
                         </WButton>
                         <WButton onClick={() => addMsg('Hello World' + ++count, 'info', 3000)}>
                             消息提示info
                         </WButton>
-                        <WButton
-                            onClick={() => addMsg('Hello World' + ++count, 'warning', 3000)}
-                        >
+                        <WButton onClick={() => addMsg('Hello World' + ++count, 'warning', 3000)}>
                             消息提示warning
                         </WButton>
-                        <WButton onClick={() => addMsg('测试超长消息提示测试超长消息提示测试超长消息提示测试超长消息提示测试超长消息提示测试超长消息提示' + ++count, 'error', 10000)}>
+                        <WButton
+                            onClick={() =>
+                                addMsg(
+                                    '测试超长消息提示测试超长消息提示测试超长消息提示测试超长消息提示测试超长消息提示测试超长消息提示' +
+                                        ++count,
+                                    'error',
+                                    10000
+                                )
+                            }
+                        >
                             消息提示error
                         </WButton>
                     </div>
                 </li>
                 <li>
                     <h3 className="text-xl text-gray-500 my-1">暂无数据</h3>
-                    <h4 className="text-lg text-gray-500 my-2">
-                        size（xs、sm、md(default)、lg） 
-                    </h4>
+                    <h4 className="text-lg text-gray-500 my-2">size（xs、sm、md(default)、lg）</h4>
                     <div className="flex items-center space-x-2 my-4">
-                        <WEmpty size='xs'/>
-                        <WEmpty size='sm'/>
-                        <WEmpty size='md'/>
-                        <WEmpty size='lg'/>
+                        <WEmpty size="xs" />
+                        <WEmpty size="sm" />
+                        <WEmpty size="md" />
+                        <WEmpty size="lg" />
                     </div>
                 </li>
             </ul>

@@ -92,6 +92,24 @@ export default function CreateNotePage() {
             setSavedNote(res);
         });
     };
+
+    // 创建标签
+    const handleCreateTag = function (name: string) {
+        if (!name) {
+            return;
+        }
+        const data = {
+            name: name,
+        };
+        void http<Tag>('/api/note/tag', {
+            body: JSON.stringify(data),
+            method: 'POST',
+        }).then(res => {
+            addMsg('标签创建成功', 'success', 3000);
+            setTags([...tags, res]);
+            setTagIds([...tagIds, res.id]);
+        });
+    };
     return (
         <div className="flex h-full relative">
             <div className="w-1/2 h-full p-4 flex flex-col">
@@ -118,9 +136,11 @@ export default function CreateNotePage() {
                             options={tags}
                             selectedIds={tagIds}
                             multi={true}
+                            canCreate={true}
                             size="sm"
                             placeholder="选择标签"
                             onChange={handleSelect}
+                            onCreateOption={handleCreateTag}
                         />
                         <WButton type="text" onClick={saveNote}>
                             <Save size={22} strokeWidth={1.25} />
