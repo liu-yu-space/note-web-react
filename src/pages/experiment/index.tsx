@@ -30,6 +30,24 @@ export default function Experiment() {
     const [mutiSelectValue, setMutiSelectValue] = useState<number[]>([1]);
 
     const { addMsg } = useMessage();
+
+    const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/api/files/upload');
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    addMsg('上传成功', 'success');
+                } else {
+                    addMsg('上传失败', 'error');
+                }
+            };
+            xhr.send(formData);
+        }
+    };
     return (
         <div className="p-10 h-full overflow-auto">
             <ul>
@@ -155,6 +173,17 @@ export default function Experiment() {
                         <WEmpty size="md" />
                         <WEmpty size="lg" />
                     </div>
+                </li>
+                <li>
+                    <h3 className="text-xl text-gray-500 my-1">上传</h3>
+                    <p className="text-gray-500 my-2">
+                        <input
+                            type="file"
+                            accept=".jpg,.png"
+                            className="border rounded p-2"
+                            onChange={handleUpload}
+                        />
+                    </p>
                 </li>
             </ul>
         </div>
