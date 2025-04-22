@@ -2,11 +2,10 @@
 // new Http({defaultConfig}).get(path, params).then().catch();
 // 1. 全局配置为实例化的都是确定下来的，不允许修改；如果想要修改配置，需要重新实例化一个新的对象
 // 2. 每次请求都可以传入一个配置，覆盖全局配置
-// 3.
 
-type Headers = Record<string, string>;
+type Headers = Record<string, unknown>;
 
-interface Response {
+interface HttpResponse {
     data: unknown;
     status: number;
     statusText: string;
@@ -15,7 +14,7 @@ interface Response {
 }
 
 interface Config {
-    timeout?: number; // 毫秒值
+    timeout?: number; // 超时毫秒值
     baseURL?: string; // 请求地址前缀
     headers?: Headers; // 请求头
     method?: string; // 请求方法
@@ -24,7 +23,7 @@ interface Config {
     data?: Record<string, unknown> | string | null; // 请求体
     responseType?: string; // 响应类型
     requestInterarptor?: (config: Config) => Config; // 请求拦截器
-    responseInterraptor?: (response: Response) => Response; // 响应拦截器
+    responseInterraptor?: (response: HttpResponse) => HttpResponse; // 响应拦截器
 }
 
 class Http {
@@ -88,14 +87,18 @@ class Http {
         const { method, url, params, data } = finallyConfig;
 
         // 处理请求拦截器
+        if (finallyConfig.requestInterarptor) {
+            const newConfig = finallyConfig.requestInterarptor(finallyConfig);
+            if (newConfig) {
+                Object.assign(finallyConfig, newConfig);
+            }
+        }
         if (!method || !url) {
             return Promise.reject(new Error('Method and URL are required'));
         }
         let fullUrl = finallyConfig.baseURL + url;
 
         if (params) {
-            // 如果params是对象，转换为查询字符串
-            // 如果params是字符串，直接拼接到url后面
             if (typeof params === 'object') {
                 const newParams = Object.entries(params).reduce((acc, [key, value]) => {
                     if (['string', 'number', 'boolean'].includes(typeof value)) {
@@ -118,16 +121,31 @@ class Http {
             body: data ? JSON.stringify(data) : null,
         };
 
-        return fetch(fullUrl, options)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+        return fetch(fullUrl, options).then(async fetchResponse => {
+            const contentType = fetchResponse.headers.get('Content-Type');
+            let responseData: unknown = null;
+            if (contentType?.includes('application/json')) {
+                responseData = await fetchResponse.json();
+            }
+
+            const response: HttpResponse = {
+                data: responseData || fetchResponse.text(),
+                status: fetchResponse.status,
+                statusText: fetchResponse.statusText,
+                headers: Object.fromEntries(fetchResponse.headers.entries()),
+                config: finallyConfig,
+            };
+
+            // 处理拦截器
+            if (finallyConfig.responseInterraptor) {
+                const newResponse = finallyConfig.responseInterraptor(response);
+                if (newResponse) {
+                    Object.assign(response, newResponse);
                 }
-                return response.json();
-            })
-            .catch(error => {
-                console.error('There has been a problem with your fetch operation:', error);
-            });
+            }
+
+            return response;
+        });
     }
 }
 
