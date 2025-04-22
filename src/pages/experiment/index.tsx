@@ -39,7 +39,7 @@ export default function Experiment() {
             const xhr = new XMLHttpRequest();
             xhr.open('POST', '/api/files/upload');
             xhr.onload = () => {
-                if (xhr.status === 200) {
+                if (xhr.status.toString().startsWith('2')) {
                     addMsg('上传成功', 'success');
                 } else {
                     addMsg('上传失败', 'error');
