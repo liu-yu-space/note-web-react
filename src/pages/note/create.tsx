@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import Editor from './components/editor_';
+import Editor from './components/editor';
 import Note from './components/note';
 import { Save } from 'lucide-react';
 import { WButton, WSwitch, WSelect } from '@/components';
@@ -47,7 +47,6 @@ export default function CreateNotePage() {
     const updateText = useCallback(function (text: string) {
         const trimmedText = text;
         setContent(trimmedText);
-        // setHtml(trimmedText);
     }, []);
 
     // 公开/私密
@@ -118,7 +117,7 @@ export default function CreateNotePage() {
                     placeholder="标题内容"
                     value={title}
                     onChange={e => setTitle(e.target.value)}
-                    className="w-full mb-4 p-4 border-gray-300 outline-none bg-gray-50 focus:bg-gray-100 transition-all duration-300"
+                    className="w-full mb-4 p-4 outline-none bg-gray-50 transition-all duration-300 border border-gray-50 focus:border-primary"
                 />
                 <Editor onTextUpdate={updateText} text={content} />
             </div>

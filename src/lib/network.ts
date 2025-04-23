@@ -5,7 +5,7 @@
 
 type Headers = Record<string, unknown>;
 
-interface HttpResponse {
+export interface HttpResponse {
     data: unknown;
     status: number;
     statusText: string;

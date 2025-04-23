@@ -16,9 +16,11 @@
         "**/*.{json,md,css,scss}": "prettier --write"
     },
     "dependencies": {
+        "@types/lodash": "^4.17.16",
         "@types/markdown-it": "^14.1.2",
         "@types/showdown": "^2.0.6",
         "dompurify": "^3.2.5",
+        "lodash": "^4.17.21",
         "lucide-react": "^0.479.0",
         "markdown-it": "^14.1.0",
         "react": "^19.0.0",
