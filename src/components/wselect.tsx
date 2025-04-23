@@ -136,7 +136,6 @@ function WSelect<T extends string | number>({
                                 strokeWidth={1.25}
                                 size={20 + 2 * { xs: 0, sm: 1, md: 2, lg: 3 }[size]}
                                 onClick={() => {
-                                    console.log(444);
                                     if (!createOptionRef.current) return;
                                     const input = createOptionRef.current;
                                     if (!input.value) return;

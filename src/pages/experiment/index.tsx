@@ -2,6 +2,7 @@ import { WButton, WInput, WSwitch, WTag, WSelect, WEmpty } from '@/components';
 import { Plus, Search } from 'lucide-react';
 import { useState } from 'react';
 import { useMessage } from '@/store';
+import http from '@/lib/request';
 
 let count = 0;
 export default function Experiment() {
@@ -36,16 +37,18 @@ export default function Experiment() {
         if (file) {
             const formData = new FormData();
             formData.append('file', file);
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/api/files/upload');
-            xhr.onload = () => {
-                if (xhr.status.toString().startsWith('2')) {
-                    addMsg('上传成功', 'success');
-                } else {
+            http.post('/api/files/upload', formData)
+                .then(res => {
+                    if (res.status.toString().startsWith('2')) {
+                        addMsg('上传成功', 'success');
+                    } else {
+                        addMsg('上传失败', 'error');
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
                     addMsg('上传失败', 'error');
-                }
-            };
-            xhr.send(formData);
+                });
         }
     };
     return (

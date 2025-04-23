@@ -20,10 +20,10 @@ interface Config {
     method?: string; // 请求方法
     url?: string; // 请求地址
     params?: Record<string, unknown> | string | null; // 请求参数
-    data?: Record<string, unknown> | string | null; // 请求体
+    data?: Record<string, unknown> | string | null | FormData; // 请求体
     responseType?: string; // 响应类型
     requestInterarptor?: (config: Config) => Config; // 请求拦截器
-    responseInterraptor?: (response: HttpResponse) => HttpResponse; // 响应拦截器
+    responseInterarptor?: (response: HttpResponse) => HttpResponse; // 响应拦截器
 }
 
 class Http {
@@ -49,14 +49,14 @@ class Http {
         });
     }
 
-    post(url: string, data: Headers = {}, config: Config = {}) {
+    post(url: string, data: Headers | FormData = {}, config: Config = {}) {
         return this.start({
             ...this.globalConfig,
             ...config,
             method: 'POST',
-            url: url,
+            url,
             params: null,
-            data: data,
+            data,
         });
     }
 
@@ -112,13 +112,25 @@ class Http {
             }
         }
 
+        // 如果是json格式的请求体，直接将对象转为json字符串
+        const contentType = finallyConfig.headers?.['Content-Type'] as string | undefined;
+        if (contentType?.includes('/json')) {
+            if (data && typeof data === 'object') {
+                finallyConfig.data = JSON.stringify(data);
+            }
+        }
+
+        // 如果是formData格式，删除headers中的Content-Type
+        if (data instanceof FormData) {
+            delete finallyConfig.headers?.['Content-Type'];
+        }
+
         const options: RequestInit = {
             method,
             headers: {
-                'Content-Type': 'application/json',
                 ...finallyConfig.headers,
-            },
-            body: data ? JSON.stringify(data) : null,
+            } as HeadersInit,
+            body: data as BodyInit | null,
         };
 
         return fetch(fullUrl, options).then(async fetchResponse => {
@@ -137,8 +149,8 @@ class Http {
             };
 
             // 处理拦截器
-            if (finallyConfig.responseInterraptor) {
-                const newResponse = finallyConfig.responseInterraptor(response);
+            if (finallyConfig.responseInterarptor) {
+                const newResponse = finallyConfig.responseInterarptor(response);
                 if (newResponse) {
                     Object.assign(response, newResponse);
                 }
