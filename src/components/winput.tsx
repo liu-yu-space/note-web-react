@@ -3,6 +3,7 @@ interface WInputProps {
     type?: 'text' | 'password' | 'email' | 'number' | 'submit' | 'search';
     size?: 'xs' | 'sm' | 'md' | 'lg';
     childrenPosition?: 'left' | 'right';
+    name?: string | undefined;
     children?: React.ReactNode;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -12,6 +13,7 @@ export default function WInput({
     size = 'md',
     childrenPosition,
     children,
+    name,
     type = 'text',
     onChange,
 }: WInputProps) {
@@ -37,6 +39,7 @@ export default function WInput({
                 </span>
             ) : null}
             <input
+                name={name}
                 className={`w-full min-w-14 outline-none border-none rounded-md px-2 py-1 bg-white ${className} text-primary-font
                     ${childrenPosition === 'right' && 'pr-8'} ${childrenPosition === 'left' && 'pl-8'}`}
                 type={type}
