@@ -41,7 +41,7 @@ export default function CreateNotePage({
 
     return (
         <div className="w-full h-full relative">
-            <div className="absolute top-1 left-0 w-full h-10 flex items-center justify-between text-sm text-gray-300 box-border px-4">
+            <div className="bg-gray-50 absolute top-0 left-0 w-full h-10 flex items-center justify-between text-sm text-gray-300 box-border px-4">
                 <div className="flex items-center gap-2">
                     <InsertImg insertText={insertText} />
                     <InsertLink insertText={insertText} />
