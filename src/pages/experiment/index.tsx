@@ -42,7 +42,7 @@ export default function Experiment() {
                     if (res.status.toString().startsWith('2')) {
                         addMsg('上传成功', 'success');
                     } else {
-                        addMsg('上传失败', 'error');
+                        addMsg('上传失败：' + res.statusText, 'error');
                     }
                 })
                 .catch(err => {

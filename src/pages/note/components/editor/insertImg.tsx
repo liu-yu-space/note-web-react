@@ -11,13 +11,14 @@ export default function InsertImg({ insertText }: { insertText: (text: string) =
         const file = e.target.files?.[0];
         if (file) {
             const imageData = await upload(file);
-            const data = imageData?.data as { id: string };
+            const data = imageData?.data as { id: string; filename: string } | undefined;
             if (data?.id) {
                 const imageUrl = location.origin + '/api/files/' + data.id;
-                const newText = `![图片](${imageUrl})`;
+                const newText = `![${data.filename}](${imageUrl})`;
                 insertText(newText);
             }
         }
+        e.target.value = '';
     };
 
     return (

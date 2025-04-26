@@ -53,25 +53,27 @@ export default function NotePage() {
     };
 
     return (
-        <div className="flex w-full h-full justify-center relative overflow-auto">
-            <section className="w-[800px] p-8 relative">
-                <h1 className="text-xl mb-4 text-center">{currentNote?.title ?? ''}</h1>
-                <h3 className="text-sm mb-4 text-gray-500 text-center">
-                    {currentNote?.createdDate ? formatTime(currentNote.createdDate) : ''}
-                </h3>
-                <article>
-                    <Note html={currentNote?.content ?? ''} />
-                </article>
-                {!currentNote?.content && (
-                    <div className="absolute w-full h-full top-0 left-0">
-                        <WEmpty size="lg" content="暂无笔记，点击右上角创建一个吧" />
-                    </div>
-                )}
-            </section>
+        <div className="flex w-full h-full relative">
+            <div className="w-full flex justify-center overflow-auto">
+                <section className="w-[800px] p-8 relative h-fit">
+                    <h1 className="text-xl mb-4 text-center">{currentNote?.title ?? ''}</h1>
+                    <h3 className="text-sm mb-4 text-gray-500 text-center">
+                        {currentNote?.createdDate ? formatTime(currentNote.createdDate) : ''}
+                    </h3>
+                    <article>
+                        <Note html={currentNote?.content ?? ''} />
+                    </article>
+                    {!currentNote?.content && (
+                        <div className="absolute w-full h-full top-0 left-0">
+                            <WEmpty size="lg" content="暂无笔记，点击右上角创建一个吧" />
+                        </div>
+                    )}
+                </section>
+            </div>
             <aside
                 className="flex flex-col top-0 z-50 right-0 w-[calc(50%-400px)] min-w-[250px] 
                     max-w-[400px] h-full hover:opacity-100 
-                    opacity-100 transition-opacity duration-300 absolute"
+                    opacity-20 transition-opacity duration-300 absolute"
             >
                 <div className="flex items-center p-4 gap-3">
                     <WInput
