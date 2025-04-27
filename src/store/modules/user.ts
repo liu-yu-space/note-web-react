@@ -61,21 +61,25 @@ export function useUserState() {
     }, []);
 
     const logout = useCallback(async () => {
-        const res = await http<{ status: number }>('/api/auth/logout', {
-            method: 'POST',
-        });
-        if (res.status === 200) {
-            setIsLoggedIn(false);
-            setUserInfo(null);
+        let res: { success: boolean } = { success: false };
+        try {
+            res = await http<{ success: boolean }>('/api/auth/logout', {
+                method: 'POST',
+            });
+            if (res.success) {
+                setIsLoggedIn(false);
+                setUserInfo(null);
 
-            // 清除本地存储
-            localStorage.removeItem(STORAGE_KEY.IS_LOGGED_IN);
-            localStorage.removeItem(STORAGE_KEY.USER_INFO);
-
-            return true;
-        } else {
-            return new Error('退出失败');
+                // 清除本地存储
+                localStorage.removeItem(STORAGE_KEY.IS_LOGGED_IN);
+                localStorage.removeItem(STORAGE_KEY.USER_INFO);
+            } else {
+                console.error('Logout error:');
+            }
+        } catch (error) {
+            console.error('Logout error:', error);
         }
+        return res;
     }, []);
 
     return {

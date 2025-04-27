@@ -29,7 +29,7 @@ export interface StoreState {
         isLoggedIn: boolean;
         userInfo: UserInfo | null;
         login: (loginInfo: LoginInfo) => Promise<{ success: boolean; message?: string }>;
-        logout: () => void;
+        logout: () => Promise<{ success: boolean; message?: string }>;
     };
     theme: {
         mode: 'light' | 'dark';

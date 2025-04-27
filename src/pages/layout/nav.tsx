@@ -5,15 +5,13 @@ import WButton from '@/components/wbutton';
 import { Link } from 'react-router-dom';
 import { useLayout, useUser } from '@/store';
 import { useNavigate } from 'react-router-dom';
-import { useUserState } from '@/store/modules/user.ts';
 import { useMessage } from '@/store';
 
 const Navbar = () => {
     const navigate = useNavigate();
     const { layout } = useLayout();
-    const { isLoggedIn } = useUser();
+    const { isLoggedIn, logout } = useUser();
     const location = useLocation();
-    const { logout } = useUserState();
     const { addMsg } = useMessage();
 
     // 判断是否是登录页面或 404 页面
@@ -43,14 +41,13 @@ const Navbar = () => {
     }
 
     // 退出登录
-    const handleLogout = () => {
-        void logout().then(res => {
-            if (res) {
-                void navigate('/login');
-            } else {
-                addMsg('退出失败', 'error');
-            }
-        });
+    const handleLogout = async () => {
+        const res = await logout();
+        if (res.success) {
+            void navigate('/login');
+        } else {
+            addMsg('退出失败', 'error');
+        }
     };
 
     return (
@@ -92,7 +89,7 @@ const Navbar = () => {
                         <Info size={20} />
                     </Link>
                 </WButton>
-                <WButton type="text" onClick={handleLogout}>
+                <WButton type="text" onClick={() => void handleLogout()}>
                     {isLoggedIn ? <LogOut size={20} /> : <LogIn size={20} />}
                 </WButton>
             </div>
