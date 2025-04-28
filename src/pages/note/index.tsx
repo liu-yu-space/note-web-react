@@ -63,12 +63,12 @@ export default function NotePage() {
                     <article>
                         <Note html={currentNote?.content ?? ''} />
                     </article>
-                    {!currentNote?.content && (
-                        <div className="absolute w-full h-full top-0 left-0">
-                            <WEmpty size="lg" content="暂无笔记，点击右上角创建一个吧" />
-                        </div>
-                    )}
                 </section>
+                {!currentNote?.content && (
+                    <div className="absolute w-full h-full top-0 left-0">
+                        <WEmpty size="lg" content="暂无笔记，点击右上角创建一个吧" />
+                    </div>
+                )}
             </div>
             <aside
                 className="flex flex-col top-0 z-50 right-0 w-[calc(50%-400px)] min-w-[250px] 

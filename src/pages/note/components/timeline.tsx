@@ -44,7 +44,7 @@ export default function Timeline({
                     >
                         <div className="flex items-center gap-1">
                             <NotebookText size={18} strokeWidth={1.25} className="shrink-0" />
-                            <h2 className="title">{item.title}</h2>
+                            <h2 className="title line-clamp-2">{item.title}</h2>
                             <span
                                 className={`${currentId === item.id ? 'bg-primary' : 'bg-gray-400'} absolute top-[calc(50%-7px)] left-[13px] w-2 h-2 rounded z-10`}
                             ></span>
