@@ -18,8 +18,8 @@ const defaultStore: StoreState = {
             return Promise.resolve({ success: false, message: 'login function not implemented' });
         },
         logout: () => {
-            // 默认的登出函数
-            console.log('logout function not implemented');
+            // 默认的登录函数
+            return Promise.resolve({ success: false, message: 'logout function not implemented' });
         },
     },
     theme: {
