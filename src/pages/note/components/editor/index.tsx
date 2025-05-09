@@ -31,11 +31,12 @@ export default function CreateNotePage({
             const newText = `${textBefore}${text}${textAfter}`;
             editorRef.current.value = newText;
             onTextUpdate(newText);
-            setTimeout(() => {
-                const newCursorPos = cursorPos + text.length;
-                editorRef.current?.focus();
-                editorRef.current?.setSelectionRange(newCursorPos, newCursorPos);
-            }, 0);
+            // 移动光标
+            // setTimeout(() => {
+            //     const newCursorPos = cursorPos + text.length;
+            //     editorRef.current?.focus();
+            //     editorRef.current?.setSelectionRange(newCursorPos, newCursorPos);
+            // }, 0);
         }
     };
 

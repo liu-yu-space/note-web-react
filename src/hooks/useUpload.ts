@@ -1,13 +1,20 @@
 // useUpload.ts
 import { useState } from 'react';
-import http from '@/lib/request'; // 假设您有网络请求库
-import type { HttpResponse } from '@/lib/network'; // 假设您有网络请求库
+import { request } from '@liu-yu/rum';
+
+export interface UploadResult {
+    filename: string;
+    id: string;
+    mimetype: string;
+    originalName: string;
+    size: number;
+}
 
 export function useUpload() {
     const [isUploading, setIsUploading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const upload = async (file: File): Promise<HttpResponse | null> => {
+    const upload = async (file: File): Promise<UploadResult | null> => {
         if (!file) return null;
 
         setIsUploading(true);
@@ -17,14 +24,19 @@ export function useUpload() {
             const formData = new FormData();
             formData.append('file', file);
 
-            const res = await http.post('/api/files/upload', formData);
+            // 使用@liu-yu/rum的request方法
+            const res = await request({
+                url: '/api/files/upload',
+                method: 'POST',
+                body: formData,
+            });
 
-            if (res.status.toString().startsWith('2')) {
-                // 假设服务器返回的数据中包含文件URL
+            // 这里假设res.data为上传结果
+            if (res) {
                 setIsUploading(false);
-                return res;
+                return res as UploadResult;
             } else {
-                throw new Error('上传失败');
+                throw new Error('无效的响应');
             }
         } catch (err) {
             console.error(err);

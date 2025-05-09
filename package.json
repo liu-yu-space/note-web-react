@@ -16,6 +16,7 @@
         "**/*.{json,md,css,scss}": "prettier --write"
     },
     "dependencies": {
+        "@liu-yu/rum": "^0.1.1",
         "@types/lodash": "^4.17.16",
         "@types/markdown-it": "^14.1.2",
         "@types/showdown": "^2.0.6",
@@ -23,7 +24,7 @@
         "lodash": "^4.17.21",
         "lucide-react": "^0.479.0",
         "react": "^19.1.0",
-        "react-dom": "^19.0.0",
+        "react-dom": "^19.1.0",
         "react-router-dom": "^7.3.0",
         "showdown": "^2.1.0"
     },
