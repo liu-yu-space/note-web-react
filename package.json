@@ -16,7 +16,7 @@
         "**/*.{json,md,css,scss}": "prettier --write"
     },
     "dependencies": {
-        "@liu-yu/rum": "^0.1.1",
+        "@liu-yu/rum": "^0.1.2",
         "@types/lodash": "^4.17.16",
         "@types/markdown-it": "^14.1.2",
         "@types/showdown": "^2.0.6",

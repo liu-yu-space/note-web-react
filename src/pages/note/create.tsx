@@ -4,38 +4,44 @@ import Note from './components/note';
 import { Save } from 'lucide-react';
 import { WButton, WSwitch, WSelect } from '@/components';
 import { useNavigate } from 'react-router-dom';
-import http from '@/lib/http';
 import type { Tag, FullNote } from '@/types';
 import { useMessage } from '@/store';
 import { useParams } from 'react-router-dom';
+import { useHttp } from '@/hooks/useHttp';
 
 export default function CreateNotePage() {
     const navigate = useNavigate();
     const { id } = useParams();
     const { addMsg } = useMessage();
     const [savedNote, setSavedNote] = useState<FullNote | null>(null);
+    const http = useHttp();
 
     // 获取笔记详情
     useEffect(() => {
-        if (id) {
-            void http<FullNote>(`/api/note/${id}`).then(res => {
+        if (id !== undefined) {
+            console.log(id);
+            void http({
+                url: `/api/note/${id}`,
+                method: 'GET',
+            }).then(res => {
+                const note = res as FullNote;
                 addMsg('笔记查询成功', 'success', 3000);
-                setSavedNote(res);
-                setTitle(res.title);
-                setContent(res.content);
-                setTagIds(res.tags.map(tag => tag.id));
-                setIsPublic(res.isPublic);
+                setSavedNote(note);
+                setTitle(note.title);
+                setContent(note.content);
+                setTagIds(note.tags.map((tag: Tag) => tag.id));
+                setIsPublic(note.isPublic);
             });
         }
-    }, [id, addMsg]);
+    }, [id, addMsg, http]);
 
     // 获取标签列表
     const [tags, setTags] = useState<Tag[]>([]);
     useEffect(() => {
-        void http<Tag[]>('/api/note/tag').then(res => {
-            setTags(res);
+        void http({ url: '/api/note/tag' }).then(res => {
+            setTags(res as Tag[]);
         });
-    }, []);
+    }, [http]);
 
     // 标题
     const [title, setTitle] = useState('');
@@ -83,12 +89,14 @@ export default function CreateNotePage() {
             tagIds: tagIds,
             isPublic: isPublic,
         };
-        void http<FullNote>('/api/note' + (data.id ? `/${data.id}` : ''), {
+        void http({
+            url: '/api/note' + (data.id ? `/${data.id}` : ''),
             body: JSON.stringify(data),
             method: data.id ? 'PUT' : 'POST',
         }).then(res => {
+            const note = res as FullNote;
             addMsg('笔记保存成功', 'success', 3000);
-            setSavedNote(res);
+            setSavedNote(note);
         });
     };
 
@@ -100,13 +108,15 @@ export default function CreateNotePage() {
         const data = {
             name: name,
         };
-        void http<Tag>('/api/note/tag', {
+        void http({
+            url: '/api/note/tag',
             body: JSON.stringify(data),
             method: 'POST',
         }).then(res => {
+            const tag = res as Tag;
             addMsg('标签创建成功', 'success', 3000);
-            setTags([...tags, res]);
-            setTagIds([...tagIds, res.id]);
+            setTags([...tags, tag]);
+            setTagIds([...tagIds, tag.id]);
         });
     };
     return (

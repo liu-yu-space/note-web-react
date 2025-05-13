@@ -2,11 +2,12 @@ import { WButton, WInput, WSwitch, WTag, WSelect, WEmpty } from '@/components';
 import { Plus, Search } from 'lucide-react';
 import { useState } from 'react';
 import { useMessage } from '@/store';
-import http from '@/lib/request';
+import { useHttp } from '@/hooks/useHttp';
 
 let count = 0;
 export default function Experiment() {
     const [checked, setChecked] = useState(false);
+    const http = useHttp();
 
     function handleClick() {
         setChecked(!checked);
@@ -37,8 +38,12 @@ export default function Experiment() {
         if (file) {
             const formData = new FormData();
             formData.append('file', file);
-            http.post('/api/files/upload', formData)
-                .then(res => {
+            http({
+                url: '/api/files/upload',
+                body: formData,
+            })
+                .then(result => {
+                    const res = result as Response;
                     if (res.status.toString().startsWith('2')) {
                         addMsg('上传成功', 'success');
                     } else {

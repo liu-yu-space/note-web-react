@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import http from '@/lib/http';
+import { useHttp } from '@/hooks/useHttp';
 import type { LoginInfo } from '@/types';
 
 // 本地存储的键名
@@ -15,6 +15,7 @@ interface userDataType {
 export function useUserState() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userInfo, setUserInfo] = useState<userDataType | null>(null);
+    const http = useHttp();
 
     useEffect(() => {
         const storedIsLoggedIn = localStorage.getItem(STORAGE_KEY.IS_LOGGED_IN);
@@ -34,38 +35,55 @@ export function useUserState() {
                 localStorage.removeItem(STORAGE_KEY.USER_INFO);
             }
         }
+
+        // 新增：监听 401 事件
+        const handleAuthLogout = () => {
+            setIsLoggedIn(false);
+            setUserInfo(null);
+        };
+        window.addEventListener('auth-logout', handleAuthLogout);
+        return () => {
+            window.removeEventListener('auth-logout', handleAuthLogout);
+        };
     }, []);
 
-    const login = useCallback(async (userInfo: LoginInfo) => {
-        let res: { success: boolean } = { success: false };
-        try {
-            res = await http<{ success: boolean }>('/api/auth/login', {
-                method: 'POST',
-                body: JSON.stringify(userInfo),
-            });
-            if (res.success) {
-                const userData = { name: userInfo.name };
+    const login = useCallback(
+        async (userInfo: LoginInfo) => {
+            let res: { success: boolean } = { success: false };
+            try {
+                const result = await http({
+                    url: '/api/auth/login',
+                    method: 'POST',
+                    body: JSON.stringify(userInfo),
+                });
+                res = result as { success: boolean };
+                if (res.success) {
+                    const userData = { name: userInfo.name };
 
-                // 更新状态
-                setUserInfo(userData);
-                setIsLoggedIn(true);
+                    // 更新状态
+                    setUserInfo(userData);
+                    setIsLoggedIn(true);
 
-                // 保存到本地存储
-                localStorage.setItem(STORAGE_KEY.IS_LOGGED_IN, 'true');
-                localStorage.setItem(STORAGE_KEY.USER_INFO, JSON.stringify(userData));
+                    // 保存到本地存储
+                    localStorage.setItem(STORAGE_KEY.IS_LOGGED_IN, 'true');
+                    localStorage.setItem(STORAGE_KEY.USER_INFO, JSON.stringify(userData));
+                }
+            } catch (error) {
+                console.error('Login error:', error);
             }
-        } catch (error) {
-            console.error('Login error:', error);
-        }
-        return Promise.resolve(res);
-    }, []);
+            return Promise.resolve(res);
+        },
+        [http]
+    );
 
     const logout = useCallback(async () => {
         let res: { success: boolean } = { success: false };
         try {
-            res = await http<{ success: boolean }>('/api/auth/logout', {
+            const result = await http({
+                url: '/api/auth/logout',
                 method: 'POST',
             });
+            res = result as { success: boolean };
             if (res.success) {
                 setIsLoggedIn(false);
                 setUserInfo(null);
@@ -80,7 +98,7 @@ export function useUserState() {
             console.error('Logout error:', error);
         }
         return res;
-    }, []);
+    }, [http]);
 
     return {
         isLoggedIn,

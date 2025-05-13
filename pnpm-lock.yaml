@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@liu-yu/rum':
-        specifier: ^0.1.1
-        version: 0.1.1
+        specifier: ^0.1.2
+        version: 0.1.2
       '@types/lodash':
         specifier: ^4.17.16
         version: 4.17.16
@@ -427,8 +427,8 @@ packages:
     resolution: {integrity: sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==}
     engines: {node: '>=18.18'}
 
-  '@liu-yu/rum@0.1.1':
-    resolution: {integrity: sha512-GcWG3XohT3tqPatK1difBaZcGD2WdGjf/Opp0oymZqFdoOlmx/o2O3V3xHGSN4g+/6pyvhozck/sI6XwFYtbWQ==}
+  '@liu-yu/rum@0.1.2':
+    resolution: {integrity: sha512-pKWkb4febvUrIbgNvg97lV96x7w0f302limPgu6Md283VSpesvxtxCSyuOQMaz3VCZ0w8jOLmRTm8OYeBzinlw==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -2195,7 +2195,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.2': {}
 
-  '@liu-yu/rum@0.1.1': {}
+  '@liu-yu/rum@0.1.2': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:

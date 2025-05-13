@@ -4,16 +4,33 @@ import { Plus, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import type { Note as NoteType, FullNote } from '@/types';
-import http from '@/lib/http';
 import Note from './components/note';
 import { formatTime } from '@/utils';
 import { useUser } from '@/store';
+import { useHttp } from '@/hooks/useHttp';
 
 export default function NotePage() {
     const { isLoggedIn } = useUser();
     const navigate = useNavigate();
+    const http = useHttp();
+
     const handleClick = () => {
-        void navigate('/note/create');
+        // 这里使用profile接口进行token验证
+        http({
+            url: `/api/auth/profile`,
+            method: 'GET',
+        })
+            .then(res => {
+                const result = res as { statusCode?: number };
+                if (result.statusCode?.toString().startsWith('2')) {
+                    // 如果验证成功，跳转到创建笔记页面
+                    void navigate('/note/create');
+                }
+            })
+            .catch(() => {
+                // 如果验证失败，跳转到登录页面
+                // void navigate('/login');
+            });
     };
 
     // 编辑笔记
@@ -24,7 +41,9 @@ export default function NotePage() {
     // 获取笔记列表
     const [notes, setNotes] = useState([] as NoteType[]);
     useEffect(() => {
-        void http('/api/note' + '?onlyPublic=false').then(res => {
+        void http({
+            url: '/api/note' + '?onlyPublic=false',
+        }).then(res => {
             setNotes(res as NoteType[]);
         });
     }, []);
@@ -34,7 +53,9 @@ export default function NotePage() {
     const [currentNoteId, setCurrentNoteId] = useState(undefined as number | undefined);
     useEffect(() => {
         if (notes.length > 0 || currentNoteId) {
-            void http('/api/note/' + (currentNoteId ?? notes[0].id)).then(res => {
+            void http({
+                url: '/api/note/' + (currentNoteId ?? notes[0].id),
+            }).then(res => {
                 setCurrentNote(res as FullNote);
             });
         }
@@ -47,7 +68,9 @@ export default function NotePage() {
 
     // 搜索笔记
     const handleSearch = (value: string) => {
-        void http('/api/note/search' + '?onlyPublic=false&title=' + value).then(res => {
+        void http({
+            url: '/api/note/search' + '?onlyPublic=false&title=' + value,
+        }).then(res => {
             setNotes(res as NoteType[]);
         });
     };
