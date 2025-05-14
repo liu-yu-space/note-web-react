@@ -7,6 +7,7 @@ export interface Note {
     id: number;
     title: string;
     createdDate: string;
+    isPublic: boolean;
     tags: Tag[];
 }
 

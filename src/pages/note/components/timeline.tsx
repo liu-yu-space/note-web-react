@@ -1,4 +1,4 @@
-import { NotebookText, Pencil } from 'lucide-react';
+import { NotepadText, NotepadTextDashed, Pencil } from 'lucide-react';
 import { idCreator } from '@/utils/tools';
 import { WButton, WTag } from '@/components';
 import type { Note } from '@/types';
@@ -43,8 +43,18 @@ export default function Timeline({
                         onClick={() => handleClick(item.id)}
                     >
                         <div className="flex items-center gap-1">
-                            <NotebookText size={18} strokeWidth={1.25} className="shrink-0" />
-                            <h2 className="title line-clamp-2">{item.title}</h2>
+                            {item.isPublic ? (
+                                <NotepadText size={18} strokeWidth={1.25} className="shrink-0" />
+                            ) : (
+                                <NotepadTextDashed
+                                    size={18}
+                                    strokeWidth={1.25}
+                                    className="shrink-0"
+                                />
+                            )}
+                            <h2 className={`title line-clamp-2 ${item.isPublic && `text-primary`}`}>
+                                {item.title}
+                            </h2>
                             <span
                                 className={`${currentId === item.id ? 'bg-primary' : 'bg-gray-400'} absolute top-[calc(50%-7px)] left-[13px] w-2 h-2 rounded z-10`}
                             ></span>
