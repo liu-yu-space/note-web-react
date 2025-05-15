@@ -34,7 +34,7 @@ export interface StoreState {
         logout: () => Promise<{ success: boolean; message?: string }>;
     };
     theme: {
-        mode: 'light' | 'dark';
+        mode: ThemeType;
         toggleTheme: (theme: ThemeType) => void;
     };
     layout: {
