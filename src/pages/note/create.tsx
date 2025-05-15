@@ -19,7 +19,6 @@ export default function CreateNotePage() {
     // 获取笔记详情
     useEffect(() => {
         if (id !== undefined) {
-            console.log(id);
             void http({
                 url: `/api/note/${id}`,
                 method: 'GET',
