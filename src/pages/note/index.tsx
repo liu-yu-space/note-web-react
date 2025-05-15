@@ -20,12 +20,8 @@ export default function NotePage() {
             url: `/api/auth/profile`,
             method: 'GET',
         })
-            .then(res => {
-                const result = res as { statusCode?: number };
-                if (result.statusCode?.toString().startsWith('2')) {
-                    // 如果验证成功，跳转到创建笔记页面
-                    void navigate('/note/create');
-                }
+            .then(() => {
+                void navigate('/note/create');
             })
             .catch(() => {
                 // 如果验证失败，跳转到登录页面
