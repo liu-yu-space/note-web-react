@@ -16,14 +16,12 @@ export function useThemeState() {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark' || savedTheme === 'light' || savedTheme === 'system') {
             setMode(savedTheme);
-            console.log('从localStorage读取主题:', savedTheme);
         }
 
         // 监听系统主题变化
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         const handleChange = (e: MediaQueryListEvent) => {
             const newMode = e.matches ? 'dark' : 'light';
-            console.log('系统主题变化:', newMode, '当前模式:', mode);
             if (mode === 'system') {
                 console.log('系统主题变化:', newMode);
                 document.documentElement.classList.toggle('dark', newMode === 'dark');

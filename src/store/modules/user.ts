@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useHttp } from '@/hooks/useHttp';
+import { useMessage } from '@/store';
 import type { LoginInfo } from '@/types';
 
 // 本地存储的键名
@@ -16,6 +17,7 @@ export function useUserState() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userInfo, setUserInfo] = useState<userDataType | null>(null);
     const http = useHttp();
+    const { addMsg } = useMessage();
 
     useEffect(() => {
         const storedIsLoggedIn = localStorage.getItem(STORAGE_KEY.IS_LOGGED_IN);
@@ -36,16 +38,32 @@ export function useUserState() {
             }
         }
 
-        // 新增：监听 401 事件
+        // 监听 401 事件
         const handleAuthLogout = () => {
-            setIsLoggedIn(false);
-            setUserInfo(null);
+            if (isLoggedIn) {
+                addMsg('登录已过期，请重新登录', 'error', 3000);
+                setIsLoggedIn(false);
+                setUserInfo(null);
+                localStorage.removeItem(STORAGE_KEY.IS_LOGGED_IN);
+                localStorage.removeItem(STORAGE_KEY.USER_INFO);
+            }
         };
         window.addEventListener('auth-logout', handleAuthLogout);
+
+        // 检查登录状态
+        const checkLoginStatus = () => {
+            return void http({
+                url: `/api/auth/profile`,
+                method: 'GET',
+            });
+        };
+        window.addEventListener('pageshow', checkLoginStatus);
+
         return () => {
+            window.removeEventListener('pageshow', checkLoginStatus);
             window.removeEventListener('auth-logout', handleAuthLogout);
         };
-    }, []);
+    }, [http, addMsg]);
 
     const login = useCallback(
         async (userInfo: LoginInfo) => {
