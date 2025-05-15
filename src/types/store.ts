@@ -19,6 +19,8 @@ export interface LoginInfo {
     password: string;
 }
 
+import { ThemeType } from '@/store/modules/theme';
+
 export interface StoreState {
     message: {
         msgList: MessageItem[];
@@ -33,7 +35,7 @@ export interface StoreState {
     };
     theme: {
         mode: 'light' | 'dark';
-        toggleTheme: () => void;
+        toggleTheme: (theme: ThemeType) => void;
     };
     layout: {
         layout: {
