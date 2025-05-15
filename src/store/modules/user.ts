@@ -63,7 +63,7 @@ export function useUserState() {
             window.removeEventListener('pageshow', checkLoginStatus);
             window.removeEventListener('auth-logout', handleAuthLogout);
         };
-    }, [http, addMsg]);
+    }, [http, addMsg, isLoggedIn]);
 
     const login = useCallback(
         async (userInfo: LoginInfo) => {
