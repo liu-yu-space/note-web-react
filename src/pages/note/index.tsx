@@ -42,7 +42,7 @@ export default function NotePage() {
         }).then(res => {
             setNotes(res as NoteType[]);
         });
-    }, []);
+    }, [http]);
 
     // 当前的笔记
     const [currentNote, setCurrentNote] = useState({} as FullNote);
@@ -55,7 +55,7 @@ export default function NotePage() {
                 setCurrentNote(res as FullNote);
             });
         }
-    }, [notes, currentNoteId]);
+    }, [notes, currentNoteId, http]);
 
     // 点击笔记
     const handleNoteClick = (id: number) => {
