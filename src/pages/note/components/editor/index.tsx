@@ -20,7 +20,7 @@ export default function CreateNotePage({
 
     const debouncedOnChange = debounce((e: ChangeEvent<HTMLTextAreaElement>) => {
         onTextUpdate(e.target.value);
-    }, 250);
+    }, 3000);
 
     // 执行插入操作
     const insertText = (text: string) => {

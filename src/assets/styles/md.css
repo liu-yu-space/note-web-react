@@ -117,7 +117,8 @@ TODO: mdweb styles 是通过前缀“md-container”来控制的，后面需要�
 
 /* image */
 .md-container img {
-    max-width: 100%;
+    max-width: 80%;
+    margin: auto;
     box-sizing: border-box;
 }
 
