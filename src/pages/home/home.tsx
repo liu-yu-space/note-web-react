@@ -12,7 +12,7 @@ export default function Home() {
         <main className="h-full overflow-auto">
             <section className="h-full flex justify-center items-center gap-10 p-10 min-h-[calc(100vh-100px)]">
                 <div>
-                    其进锐者，其退速。- 孟子
+                    <span className="text-primary">其进锐者，其退速。- 孟子</span>
                     <div className="mt-10 flex gap-5">
                         <WButton onClick={() => handleClick('/note')} size="lg" type="default">
                             查看笔记
