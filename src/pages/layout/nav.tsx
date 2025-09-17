@@ -1,6 +1,6 @@
 import { Info, Settings, LogOut, LogIn } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
-import logo from '@/assets/imgs/open-book.svg';
+import Logo from '@/components/Logo';
 import WButton from '@/components/wbutton';
 import { Link } from 'react-router-dom';
 import { useLayout, useUser } from '@/store';
@@ -62,7 +62,7 @@ const Navbar = () => {
             <div className={`flex ${layout.position === 'left' ? 'flex-col' : ''} gap-4`}>
                 <WButton type="text">
                     <Link to="/">
-                        <img src={logo} alt="" className="w-10" />
+                        <Logo size={40} />
                     </Link>
                 </WButton>
                 <WButton type="text">

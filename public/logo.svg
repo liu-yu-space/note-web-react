@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <!-- 深绿渐变 -->
+    <linearGradient id="green1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00D084"/>
+      <stop offset="100%" stop-color="#009E60"/>
+    </linearGradient>
+    <!-- 浅绿渐变 -->
+    <linearGradient id="green2" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#A8E063"/>
+      <stop offset="100%" stop-color="#56AB2F"/>
+    </linearGradient>
+    <!-- 用于镂空的遮罩 -->
+    <mask id="hole">
+      <rect width="200" height="200" fill="white"/>
+      <circle cx="100" cy="100" r="28" fill="black"/>
+    </mask>
+  </defs>
+
+  <!-- 两个绿色扇形组合，并应用镂空效果 -->
+  <g mask="url(#hole)">
+    <!-- 第一扇形 -->
+    <path d="M100 100 L190 100 A90 90 0 0 1 127.28 172.72 Z"
+          fill="url(#green1)" transform="rotate(-20 100 100)" />
+    <!-- 第二扇形 -->
+    <path d="M100 100 L190 100 A90 90 0 0 1 127.28 172.72 Z"
+          fill="url(#green2)" transform="rotate(160 100 100)" />
+  </g>
+</svg>
